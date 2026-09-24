@@ -15,7 +15,7 @@ button{cursor:pointer;border:0}
 img{max-width:100%;display:block}
 .hidden{display:none!important}
 :root{--black:#111318;--line:#e5e7eb;--muted:#727780;--white:#fff;--red:#e63946;--blue:#1d3557;--accent:#ff4d2d;--green:#16a34a}
-body{padding-bottom:76px}
+body{padding-bottom:88px}
 
 /* WELCOME */
 #welcomeApp{min-height:100vh;background:linear-gradient(135deg,#fff 0%,#f4f7ff 52%,#fff1f2 100%);color:#17191d}
@@ -70,13 +70,11 @@ body{padding-bottom:76px}
 .brand-name .mart{color:var(--blue)}
 .brand-tagline{font-size:11px;color:var(--muted);letter-spacing:3px;margin-top:4px;text-transform:uppercase}
 .header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.header-inner{max-width:1180px;margin:auto;height:64px;display:flex;align-items:center;gap:18px;padding:0 18px}
-.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;white-space:nowrap}
-.logo-mark{width:28px;height:28px;border-radius:9px;background:#111318;color:#fff;display:grid;place-items:center;font-size:13px}
-.search-wrap{flex:1;max-width:620px;margin:auto;position:relative}
+.header-inner{max-width:1180px;margin:auto;height:64px;display:flex;align-items:center;gap:10px;padding:0 14px}
+.search-wrap{flex:1;position:relative;max-width:none}
 .search-wrap input{width:100%;height:42px;border:1px solid var(--line);background:#f7f8fa;border-radius:12px;outline:none;padding:0 45px 0 15px}
 .search-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#777}
-.header-card{position:relative;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:12px;display:grid;place-items:center}
+.header-card{position:relative;width:42px;height:42px;border:1px solid var(--line);background:#fff;border-radius:12px;display:grid;place-items:center;flex:none}
 .badge{position:absolute;top:-5px;right:-5px;min-width:18px;height:18px;border-radius:20px;background:var(--accent);color:#fff;font-size:10px;display:grid;place-items:center;padding:0 4px}
 .page{max-width:1180px;margin:auto;padding:20px 18px}
 .slider{position:relative;width:100%;height:190px;overflow:hidden;border-radius:16px;background:#ddd}
@@ -99,8 +97,9 @@ body{padding-bottom:76px}
 .category{flex:0 0 auto;padding:10px 16px;border:1px solid var(--line);background:#fff;border-radius:11px;font-size:13px}
 .category.active{background:#111318;color:#fff;border-color:#111318}
 .products{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.product{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s;cursor:pointer}
+.product{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.2s}
 .product:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.07)}
+.product-click-area{cursor:pointer}
 .product-img{aspect-ratio:1;background:#f2f3f5;overflow:hidden}
 .product-img img{width:100%;height:100%;object-fit:cover}
 .product-body{padding:12px}
@@ -108,26 +107,55 @@ body{padding-bottom:76px}
 .price{margin-top:7px;font-size:17px;font-weight:800}
 .old-price{font-size:12px;color:#999;text-decoration:line-through;margin-left:5px}
 .product-meta{margin-top:6px;color:#777;font-size:11px}
-.product-actions{display:flex;gap:7px;margin-top:10px}
+.product-actions{display:flex;gap:7px;margin-top:10px;padding:0 12px 12px}
 .small-btn{flex:1;height:35px;border-radius:9px;background:#f0f1f3;font-size:12px}
 .buy-btn{background:#111318;color:#fff}
 .empty{text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:45px 20px;color:#777}
-.bottom-nav{position:fixed;z-index:100;bottom:0;left:0;right:0;height:66px;background:rgba(255,255,255,.97);backdrop-filter:blur(15px);border-top:1px solid var(--line);display:flex;justify-content:center}
-.nav-inner{width:100%;max-width:500px;display:flex}
-.nav-item{flex:1;background:none;color:#777;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px}
-.nav-item.active{color:#111318;font-weight:700}
-.nav-icon{width:20px;height:20px}
 
-/* FLOATING LIVE CHAT */
-.float-chat{position:fixed;right:16px;bottom:82px;z-index:120;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;z-index:100;bottom:0;left:0;right:0;padding:8px 12px 10px;display:flex;justify-content:center;background:linear-gradient(to top,#f6f7f9 60%,transparent);pointer-events:none}
+.nav-inner{width:100%;max-width:420px;height:68px;background:#111318;border:1px solid #252832;border-radius:20px;display:flex;align-items:center;justify-content:space-around;position:relative;padding:6px;box-shadow:0 15px 40px rgba(0,0,0,.35);pointer-events:auto;animation:navSlideUp .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes navSlideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-indicator{position:absolute;top:6px;left:6px;width:calc((100% - 12px)/3);height:56px;border-radius:16px;background:linear-gradient(135deg,#e63946 0%,#1d3557 100%);box-shadow:0 8px 20px rgba(230,57,70,.35),0 4px 12px rgba(29,53,87,.3),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .42s cubic-bezier(.22,1,.36,1)}
+.nav-item{flex:1;height:56px;border:0;background:none;color:#777b85;position:relative;z-index:2;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:color .3s;-webkit-tap-highlight-color:transparent;overflow:hidden;border-radius:16px}
+.nav-icon{width:21px;height:21px;display:flex;align-items:center;justify-content:center;transition:transform .42s cubic-bezier(.22,1,.36,1)}
+.nav-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.nav-text{font-size:10px;font-weight:600}
+.nav-item.active{color:#fff;font-weight:700}
+.nav-item.active .nav-icon{transform:translateY(-1px) scale(1.1);filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
+.nav-item.clicked .nav-icon{animation:navPop .42s cubic-bezier(.22,1,.36,1)}
+@keyframes navPop{0%{transform:scale(1)}45%{transform:scale(.72)}75%{transform:scale(1.18)}100%{transform:scale(1.1)}}
+.ripple{position:absolute;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.45);pointer-events:none;transform:scale(0);animation:ripple .55s ease-out forwards}
+@keyframes ripple{to{transform:scale(7);opacity:0}}
+.nav-badge{position:absolute;top:8px;right:calc(50% - 18px);min-width:16px;height:16px;border-radius:20px;background:#e63946;color:#fff;font-size:9px;font-weight:800;display:grid;place-items:center;padding:0 4px;box-shadow:0 2px 6px rgba(230,57,70,.5);animation:badgePop .3s ease;z-index:5}
+@keyframes badgePop{from{transform:scale(0)}to{transform:scale(1)}}
+
+/* BUTTON LOADER */
+.small-btn,.detail-actions .primary,.detail-actions .secondary,
+.panel .primary,.panel .secondary,.success .primary{position:relative;overflow:hidden;transition:transform .2s,opacity .2s}
+.small-btn:active,.detail-actions .primary:active,.panel .primary:active{transform:scale(.96)}
+.processing{cursor:not-allowed!important;pointer-events:none}
+.btn-normal-content,.btn-processing-content{display:flex;align-items:center;justify-content:center;gap:6px;line-height:1}
+.btn-processing-content{display:none}
+.processing .btn-normal-content{display:none}
+.processing .btn-processing-content{display:flex}
+.loader-bar{width:3px;height:12px;border-radius:5px;background:currentColor;animation:loaderBars .8s ease-in-out infinite}
+.loader-bar:nth-child(2){animation-delay:.12s}
+.loader-bar:nth-child(3){animation-delay:.24s}
+.loader-bar:nth-child(4){animation-delay:.36s}
+@keyframes loaderBars{0%,100%{height:5px;opacity:.45}50%{height:14px;opacity:1}}
+
+/* FLOAT CHAT */
+.float-chat{position:fixed;right:16px;bottom:98px;z-index:120;display:flex;flex-direction:column;align-items:flex-end;gap:10px;touch-action:none;user-select:none}
 .float-chat.welcome-mode{bottom:20px}
-.chat-fab{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 8px 24px rgba(37,211,102,.4);display:grid;place-items:center;font-size:22px;position:relative}
+.float-chat.dragging{cursor:grabbing}
+.chat-fab{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 8px 24px rgba(37,211,102,.4);display:grid;place-items:center;font-size:22px;position:relative;cursor:grab;touch-action:none}
+.chat-fab:active{cursor:grabbing}
 .chat-fab.pulse:after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #25D366;animation:pulse 1.6s infinite}
 @keyframes pulse{0%{transform:scale(.9);opacity:.8}100%{transform:scale(1.25);opacity:0}}
-.chat-menu{display:flex;flex-direction:column;gap:8px;align-items:flex-end;transform-origin:bottom right;transition:.2s;transform:scale(.6);opacity:0;pointer-events:none}
+.chat-menu{display:flex;flex-direction:column;gap:8px;align-items:flex-end;transition:.2s;transform:scale(.6);opacity:0;pointer-events:none}
 .chat-menu.show{transform:scale(1);opacity:1;pointer-events:auto}
-.chat-menu-item{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:30px;padding:8px 14px 8px 8px;box-shadow:0 6px 20px rgba(0,0,0,.12);font-size:13px;font-weight:700;color:#111;text-decoration:none;transition:.15s}
-.chat-menu-item:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(0,0,0,.16)}
+.chat-menu-item{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:30px;padding:8px 14px 8px 8px;box-shadow:0 6px 20px rgba(0,0,0,.12);font-size:13px;font-weight:700;color:#111;text-decoration:none}
 .chat-menu-item .ci{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:17px}
 .ci-wa{background:#25D366}
 .ci-tg{background:#229ED9}
@@ -140,7 +168,7 @@ body{padding-bottom:76px}
 .gallery{padding:14px}
 .main-image{width:100%;aspect-ratio:1;object-fit:contain;border-radius:12px;background:#f5f5f5}
 .thumbs{display:flex;gap:9px;margin-top:10px;flex-wrap:wrap}
-.thumb{width:68px;height:68px;border-radius:9px;overflow:hidden;border:2px solid transparent;padding:0;background:#f2f2f2}
+.thumb{width:68px;height:68px;border-radius:9px;overflow:hidden;border:2px solid transparent;padding:0;background:#f2f2f2;cursor:pointer}
 .thumb.active{border-color:#111318}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .detail-info{padding:22px}
@@ -162,8 +190,11 @@ body{padding-bottom:76px}
 /* CART */
 .card-list{display:flex;flex-direction:column;gap:10px}
 .card-item{display:grid;grid-template-columns:75px 1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px}
-.card-item img{width:75px;height:75px;object-fit:cover;border-radius:9px}
-.card-name{font-size:14px;font-weight:700}.card-price{margin-top:5px;font-weight:800}
+.card-item img{width:75px;height:75px;object-fit:cover;border-radius:9px;background:#f2f3f5}
+.card-name{font-size:14px;font-weight:700}
+.card-variant{font-size:11px;color:#666;margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.card-variant span{background:#f0f1f3;padding:2px 8px;border-radius:20px;font-weight:600;color:#111}
+.card-price{margin-top:5px;font-weight:800}
 .remove{color:#b42318;font-size:12px;background:none}
 .summary{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px}
 .sum-row{display:flex;justify-content:space-between;padding:7px 0;color:#62666e;font-size:13px}
@@ -173,7 +204,8 @@ body{padding-bottom:76px}
 .profile-card{padding:20px}
 .profile-head{display:flex;align-items:center;gap:15px}
 .avatar{width:64px;height:64px;border-radius:50%;background:#111318;color:#fff;display:grid;place-items:center;font-size:22px;font-weight:800}
-.profile-name{font-size:19px;font-weight:800}.profile-email{color:#777;font-size:12px;margin-top:4px}
+.profile-name{font-size:19px;font-weight:800}
+.profile-email{color:#777;font-size:12px;margin-top:4px}
 .profile-info{margin-top:20px;display:grid;gap:11px}
 .info{display:flex;justify-content:space-between;gap:20px;padding:11px 0;border-bottom:1px solid #eee;font-size:13px}
 .info span:last-child{color:#666;text-align:right}
@@ -212,7 +244,7 @@ body{padding-bottom:76px}
 /* ORDERS */
 .order-card{padding:16px;margin-bottom:12px}
 .order-head{display:flex;justify-content:space-between;gap:15px}
-.order-id{font-weight:800;font-size:14px}
+.order-id{font-weight:800;font-size:14px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
 .status{font-size:11px;padding:5px 9px;border-radius:20px;background:#eef1f4;font-weight:700;white-space:nowrap}
 .status.placed{background:#e0e7ff;color:#3730a3}
 .status.confirmed{background:#dbeafe;color:#1e40af}
@@ -223,26 +255,40 @@ body{padding-bottom:76px}
 .status.cancelled{background:#fee2e2;color:#991b1b}
 .order-meta{margin-top:8px;color:#777;font-size:12px}
 .order-product{display:flex;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid #eee}
-.order-product img{width:55px;height:55px;object-fit:cover;border-radius:8px}
+.order-product img{width:55px;height:55px;object-fit:cover;border-radius:8px;background:#f2f3f5}
 .order-product-name{font-size:13px;font-weight:700}
 .order-product-meta{font-size:12px;color:#777;margin-top:4px}
+.order-variant{font-size:11px;color:#111;font-weight:700;margin-top:4px;display:flex;gap:8px;flex-wrap:wrap}
+.order-variant span{background:#f0f1f3;padding:2px 8px;border-radius:20px}
 .notification{margin-top:14px;padding:11px;border-radius:9px;background:#f5f6f7;font-size:12px;color:#555}
 .order-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 .order-btn{flex:1;min-height:38px;border-radius:10px;font-size:12px;font-weight:700;padding:0 12px}
 .order-btn.view{background:#111318;color:#fff}
 .order-btn.cancel{background:#fff;color:#b42318;border:1px solid #fca5a5}
 
+/* CANCEL COUNTDOWN */
+.cancel-countdown{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:3px 10px;border-radius:20px;
+  font-size:10px;font-weight:800;
+  background:#fef3c7;color:#92400e;
+  animation:pulseCountdown 1.2s infinite;
+}
+@keyframes pulseCountdown{
+  0%,100%{opacity:1}
+  50%{opacity:.6}
+}
+
 /* ORDER DETAILS */
 .order-detail-wrap{max-width:720px;margin:0 auto}
 .od-panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px;margin-bottom:14px}
 .od-panel h3{margin:0 0 12px;font-size:15px;display:flex;align-items:center;gap:8px}
-.od-panel h3 .icon{width:26px;height:26px;border-radius:8px;background:#f0f1f3;display:grid;place-items:center;font-size:14px}
+.od-panel h3 .icon{width:26px;height:26px;border-radius:8px;background:#f0f1f3;display:grid;place-items:center;font-size:14px;color:#111}
 .od-row{display:flex;justify-content:space-between;padding:8px 0;font-size:13px;color:#666}
 .od-row strong{color:#111;text-align:right;max-width:60%}
 .od-divider{height:1px;background:#eee;margin:8px 0}
 .od-total{display:flex;justify-content:space-between;padding:12px 0 0;font-size:16px;font-weight:900;border-top:1px solid #eee;margin-top:8px}
-.od-paid{color:#16a34a}
-.od-due{color:#dc2626}
+.od-paid{color:#16a34a}.od-due{color:#dc2626}
 .od-pill{display:inline-block;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:800}
 .od-pill.green{background:#dcfce7;color:#166534}
 .od-pill.amber{background:#fef3c7;color:#92400e}
@@ -250,24 +296,34 @@ body{padding-bottom:76px}
 .od-pill.gray{background:#f3f4f6;color:#4b5563}
 .od-item{display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #f1f1f1}
 .od-item:last-child{border-bottom:0}
-.od-item img{width:60px;height:60px;object-fit:cover;border-radius:9px}
+.od-item img{width:60px;height:60px;object-fit:cover;border-radius:9px;background:#f2f3f5}
 .od-item-name{font-size:13px;font-weight:700}
 .od-item-meta{font-size:11px;color:#777;margin-top:4px}
+.od-item-variant{font-size:11px;color:#111;font-weight:700;margin-top:5px;display:flex;gap:8px;flex-wrap:wrap}
+.od-item-variant span{background:#f0f1f3;padding:2px 8px;border-radius:20px}
 .od-item-price{font-size:14px;font-weight:800;text-align:right}
 
 /* CHECKOUT */
 .checkout-wrap{width:100%;max-width:100%;margin:0}
 .checkout-grid{display:grid;grid-template-columns:1fr;gap:14px}
 .panel{padding:18px;border-radius:15px;width:100%;max-width:100%}
-.panel h3{margin:0 0 14px;font-size:15px;display:flex;align-items:center;gap:8px}
-.panel h3 .icon{width:26px;height:26px;border-radius:8px;background:#f0f1f3;display:grid;place-items:center;font-size:14px}
+.panel h3{margin:0 0 14px;font-size:15px;display:flex;align-items:center;gap:9px}
+.panel h3 .icon{
+  width:28px;height:28px;border-radius:8px;background:#f0f1f3;
+  display:grid;place-items:center;color:#111;flex:none;
+}
+.panel h3 .icon svg{display:block}
+.option-selected{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;font-weight:700;color:#16a34a;background:#f0fdf4;
+  padding:3px 10px;border-radius:20px;margin-left:auto;
+}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:12px;color:#666;margin-bottom:6px}
 .field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px;outline:none;background:#fff}
 
 .address-select-list{display:flex;flex-direction:column;gap:10px}
-.address-card{border:2px solid var(--line);border-radius:12px;padding:13px;cursor:pointer;transition:.15s;background:#fff}
-.address-card:hover{border-color:#bbb}
+.address-card{border:2px solid var(--line);border-radius:12px;padding:13px;cursor:pointer;background:#fff}
 .address-card.selected{border-color:#111318;background:#fafafa;box-shadow:0 0 0 3px rgba(17,19,24,.08)}
 .address-card-top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
 .address-card-radio{width:18px;height:18px;border-radius:50%;border:2px solid #bbb;flex:none;display:grid;place-items:center;background:#fff}
@@ -279,22 +335,25 @@ body{padding-bottom:76px}
 .address-card-body{font-size:12px;color:#666;line-height:1.6;margin-left:28px}
 
 .payment-list{display:flex;flex-direction:column;gap:8px}
-.pay-group-label{font-size:11px;color:#777;margin:8px 0 4px 4px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.payment-card{border:2px solid var(--line);border-radius:12px;padding:13px;cursor:pointer;display:flex;align-items:center;gap:11px;transition:.15s;background:#fff}
+.payment-card{border:2px solid var(--line);border-radius:12px;padding:13px;cursor:pointer;display:flex;align-items:center;gap:11px;background:#fff;transition:.15s}
 .payment-card:hover{border-color:#bbb}
 .payment-card.selected{border-color:#111318;background:#fafafa;box-shadow:0 0 0 3px rgba(17,19,24,.08)}
 .payment-card-radio{width:18px;height:18px;border-radius:50%;border:2px solid #bbb;flex:none;display:grid;place-items:center;background:#fff}
 .payment-card.selected .payment-card-radio{border-color:#111318}
 .payment-card.selected .payment-card-radio:after{content:"";width:9px;height:9px;border-radius:50%;background:#111318}
-.payment-icon{font-size:18px}
+.payment-icon{
+  width:34px;height:34px;border-radius:9px;background:#f0f1f3;
+  display:grid;place-items:center;color:#111;flex:none;
+}
+.payment-icon svg{display:block}
+.payment-card.selected .payment-icon{background:#111318;color:#fff}
 .payment-info{flex:1}
 .payment-name{font-size:13px;font-weight:700}
 
 .pay-option-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
-.pay-option{border:2px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;text-align:center;transition:.15s;background:#fff}
-.pay-option:hover{border-color:#bbb}
-.pay-option.selected{border-color:#111318;background:#fafafa;box-shadow:0 0 0 3px rgba(17,19,24,.08)}
-.pay-option-icon{width:48px;height:48px;margin:0 auto 10px;border-radius:50%;background:#f0f1f3;display:grid;place-items:center;font-size:22px}
+.pay-option{border:2px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;text-align:center;background:#fff}
+.pay-option.selected{border-color:#111318;background:#fafafa}
+.pay-option-icon{width:48px;height:48px;margin:0 auto 10px;border-radius:50%;background:#f0f1f3;display:grid;place-items:center;color:#111}
 .pay-option.selected .pay-option-icon{background:#111318;color:#fff}
 .pay-option-title{font-size:14px;font-weight:800;margin-bottom:4px}
 .pay-option-sub{font-size:11px;color:#777;line-height:1.5}
@@ -313,7 +372,6 @@ body{padding-bottom:76px}
 .trx-box{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
 .trx-box label{font-size:12px;color:#666;display:block;margin-bottom:8px;font-weight:600}
 .trx-box input{width:100%;border:1px solid var(--line);border-radius:9px;padding:13px;outline:none;background:#fafbfc;font-size:14px;letter-spacing:1px;text-transform:uppercase}
-.trx-box input:focus{border-color:#111318;background:#fff}
 
 .success{text-align:center;background:#fff;border:1px solid var(--line);border-radius:15px;padding:50px 20px;max-width:500px;margin:0 auto}
 .success-icon{width:64px;height:64px;border-radius:50%;background:#111318;color:#fff;display:grid;place-items:center;margin:auto;font-size:30px}
@@ -337,24 +395,17 @@ body{padding-bottom:76px}
   .w-hero{padding:50px 18px 35px}.w-hero h1{font-size:40px}
   .w-showcase img{height:130px}.w-showcase img:first-child{height:270px}
   .w-features{grid-template-columns:1fr}
-  .brand-name{font-size:26px;letter-spacing:1.5px}
-  .brand-bar{padding:12px 12px 8px}.header-inner{height:58px;gap:9px}
-  .logo{font-size:16px}.logo-mark{width:26px;height:26px}.header-card{width:38px;height:38px}
+  .brand-name{font-size:26px}.brand-bar{padding:12px 12px 8px}
+  .header-inner{height:58px;gap:9px}
   .search-wrap input{height:38px}.page{padding:14px 12px}
-  .slider{height:135px;border-radius:13px}.products{grid-template-columns:repeat(2,1fr);gap:9px}
+  .slider{height:135px}.products{grid-template-columns:repeat(2,1fr);gap:9px}
   .product-body{padding:9px}.product-name{font-size:12px;min-height:34px}.price{font-size:15px}
-  .product-actions .small-btn{font-size:10px;height:32px}
+  .product-actions{padding:0 9px 9px;gap:5px}.product-actions .small-btn{font-size:10px;height:32px}
   .detail{grid-template-columns:1fr;gap:12px}.detail-info h1{font-size:20px}.detail-price{font-size:24px}
-  .settings-field{flex-direction:column;align-items:stretch}.update-btn{width:100%}
   .form-grid{grid-template-columns:1fr}.form-group.full{grid-column:auto}
   .pay-option-grid{grid-template-columns:1fr}
-  .pay-info-box .number{font-size:22px}
   .panel{padding:15px}
-  .float-chat{right:12px;bottom:78px}
-  .float-chat.welcome-mode{bottom:16px}
-  .chat-fab{width:48px;height:48px;font-size:20px}
 }
-@media(max-width:380px){.logo{display:none}.search-wrap{max-width:none}.brand-name{font-size:22px}}
 </style>
 </head>
 <body>
@@ -426,17 +477,16 @@ body{padding-bottom:76px}
 </div>
 <header class="header">
 <div class="header-inner">
-<div class="logo"><div class="logo-mark">J</div>🛒Jahid Shop BD🛍️</div>
-<div class="search-wrap" id="homeSearch">
-<input id="searchInput" type="search" placeholder="Search products..." oninput="handleSearch(this.value)">
-<div class="search-icon">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-</div>
-</div>
-<button class="header-card" onclick="go('card')">
-<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
-<span class="badge" id="cardBadge">0</span>
-</button>
+  <div class="search-wrap">
+    <input id="searchInput" type="search" placeholder="Search products..." oninput="handleSearch(this.value)">
+    <div class="search-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    </div>
+  </div>
+  <button class="header-card" onclick="go('card')">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+    <span class="badge" id="cardBadge">0</span>
+  </button>
 </div>
 </header>
 
@@ -509,38 +559,37 @@ body{padding-bottom:76px}
 </main>
 
 <nav class="bottom-nav">
-<div class="nav-inner">
-<button class="nav-item active" id="navHome" onclick="go('home')">
-<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home
-</button>
-<button class="nav-item" id="navCard" onclick="go('card')">
-<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Card
-</button>
-<button class="nav-item" id="navProfile" onclick="go('profile')">
-<svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile
-</button>
-</div>
+  <div class="nav-inner">
+    <div class="nav-indicator" id="navIndicator"></div>
+    <button class="nav-item active" id="navHome" onclick="selectNav(this,0,event)">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></span>
+      <span class="nav-text">Home</span>
+    </button>
+    <button class="nav-item" id="navCard" onclick="selectNav(this,1,event)">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></span>
+      <span class="nav-text">Card</span>
+      <span class="nav-badge hidden" id="navBadge">0</span>
+    </button>
+    <button class="nav-item" id="navProfile" onclick="selectNav(this,2,event)">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+      <span class="nav-text">Profile</span>
+    </button>
+  </div>
 </nav>
 </div>
 
-<!-- FLOATING LIVE CHAT -->
 <div id="floatChat" class="float-chat welcome-mode">
   <div class="chat-menu" id="chatMenu">
-    <a id="chatWhatsApp" class="chat-menu-item" href="#" target="_blank">
-      <span class="ci ci-wa">W</span><span>WhatsApp</span>
-    </a>
-    <a id="chatTelegram" class="chat-menu-item" href="#" target="_blank">
-      <span class="ci ci-tg">T</span><span>Telegram</span>
-    </a>
+    <a id="chatWhatsApp" class="chat-menu-item" href="#" target="_blank"><span class="ci ci-wa">W</span><span>WhatsApp</span></a>
+    <a id="chatTelegram" class="chat-menu-item" href="#" target="_blank"><span class="ci ci-tg">T</span><span>Telegram</span></a>
   </div>
-  <button class="chat-fab pulse" id="chatFab" onclick="toggleFloatChat()">
+  <button class="chat-fab pulse" id="chatFab">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
     </svg>
   </button>
 </div>
 
-<!-- STORE MODAL -->
 <div class="modal" id="modal">
 <div class="modal-box">
 <div class="modal-head"><strong id="modalTitle">Details</strong><button class="close" onclick="closeModal()">×</button></div>
@@ -568,13 +617,12 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-const STORAGE = { card:"zahidshop_card", profile:"jahidshop_profile", account:"jahidshop_account", session:"jahidshop_session" };
+const STORAGE = { card:"zahidshop_card", profile:"jahidshop_profile", account:"jahidshop_account", session:"jahidshop_session", chatPos:"jahidshop_chat_pos" };
 
 let products = [];
 let sliders = [];
 let settings = {};
 let support = {};
-let popups = [];
 let payments = [];
 let orders = [];
 
@@ -585,6 +633,9 @@ let currentCategory = "All";
 let searchText = "";
 let currentProduct = null;
 let detailQty = 1;
+let detailSelectedImage = "";       // 🔥 নির্বাচিত ছবির URL
+let detailSelectedImageIndex = 0;   // 🔥 নির্বাচিত ছবির index
+
 let sliderIndex = 0;
 let sliderTimer = null;
 let orderRef = null;
@@ -600,8 +651,10 @@ let selectedAddressIndexCheckout = 0;
 let selectedPaymentMethod = null;
 let selectedPaymentOption = "full";
 let pendingOrderData = null;
+let buyNowItem = null;
 
-const CANCEL_HIDE_MS = 2 * 60 * 60 * 1000; // 2 hours
+const CANCEL_HIDE_MS = 2 * 60 * 60 * 1000;
+const CHECKOUT_FLOW_PAGES = ["checkout","payConfirm","payment","success"];
 
 function load(k, f){ try{ let x = localStorage.getItem(k); return x ? JSON.parse(x) : f; } catch(e){ return f; } }
 function save(k, v){ localStorage.setItem(k, JSON.stringify(v)); }
@@ -611,16 +664,235 @@ function toast(t){ let e = document.getElementById("toast"); e.textContent = t; 
 function formatDate(d){ return new Date(d).toLocaleDateString("en-GB",{ day:"2-digit", month:"short", year:"numeric" }); }
 function formatDateTime(d){ return new Date(d).toLocaleString("en-GB",{ day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit" }); }
 function getAddressesArr(){ let a = profile.addresses || []; return a.map(x => typeof x === "string" ? { formatted: x } : x); }
+function getCheckoutItems(){ return buyNowItem ? [buyNowItem] : card; }
 
-/* Auto-hide cancelled orders after 2 hours */
+/* ============================================================
+   SVG ICON HELPER
+============================================================ */
+function svgIcon(name, size = 18, color = "currentColor"){
+  let icons = {
+    location: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    card: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>`,
+    ruler: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0L2.7 16.7a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4z"/><path d="m7.5 10.5 2 2"/><path d="m10.5 7.5 2 2"/><path d="m13.5 4.5 2 2"/><path d="m4.5 13.5 2 2"/></svg>`,
+    palette: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="${color}"/><circle cx="17.5" cy="10.5" r=".5" fill="${color}"/><circle cx="8.5" cy="7.5" r=".5" fill="${color}"/><circle cx="6.5" cy="12.5" r=".5" fill="${color}"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>`,
+    box: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+    wallet: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>`,
+    bag: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+    check: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+    phone: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`,
+    truck: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`
+  };
+  return icons[name] || "";
+}
+
+/* ============================================================
+   CANCEL COUNTDOWN (2 hours)
+============================================================ */
+function getRemainingTime(cancelledAt){
+  let elapsed = Date.now() - Number(cancelledAt);
+  let remaining = CANCEL_HIDE_MS - elapsed;
+  return remaining > 0 ? remaining : 0;
+}
+function formatCountdown(ms){
+  if(ms <= 0) return "00:00:00";
+  let total = Math.floor(ms / 1000);
+  let h = String(Math.floor(total / 3600)).padStart(2, "0");
+  let m = String(Math.floor((total % 3600) / 60)).padStart(2, "0");
+  let s = String(total % 60).padStart(2, "0");
+  return `${h}:${m}:${s}`;
+}
+function startCancelCountdowns(){
+  if(window.cancelCountdownTimer) clearInterval(window.cancelCountdownTimer);
+  window.cancelCountdownTimer = setInterval(() => {
+    document.querySelectorAll("[data-cancel-countdown]").forEach(el => {
+      let cancelledAt = Number(el.dataset.cancelCountdown);
+      let remaining = getRemainingTime(cancelledAt);
+      if(remaining <= 0){
+        el.textContent = "Hiding...";
+      } else {
+        el.textContent = "⏱ " + formatCountdown(remaining);
+      }
+    });
+    if(currentPageNow() === "orders"){
+      let needsRefresh = orders.some(o =>
+        o.status === "Cancelled" && o.cancelledAt && getRemainingTime(o.cancelledAt) <= 0
+      );
+      if(needsRefresh) renderOrders();
+    }
+  }, 1000);
+}
+
+/* ============================================================
+   NAV
+============================================================ */
+function selectNav(el, index, e){
+  document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active","clicked"));
+  el.classList.add("active","clicked");
+  let ind = document.getElementById("navIndicator");
+  if(ind) ind.style.transform = `translateX(${index * 100}%)`;
+  if(e){
+    const ripple = document.createElement("span");
+    ripple.className = "ripple";
+    const rect = el.getBoundingClientRect();
+    ripple.style.left = `${e.clientX - rect.left}px`;
+    ripple.style.top = `${e.clientY - rect.top}px`;
+    el.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  }
+  setTimeout(() => el.classList.remove("clicked"), 450);
+  if(index === 0) go("home");
+  if(index === 1) go("card");
+  if(index === 2) go("profile");
+}
+function updateNavBadge(){
+  let badge = document.getElementById("navBadge");
+  if(!badge) return;
+  let total = card.reduce((s, x) => s + x.qty, 0);
+  if(total > 0){ badge.textContent = total > 99 ? "99+" : total; badge.classList.remove("hidden"); }
+  else badge.classList.add("hidden");
+}
+function syncNavWithPage(page){
+  let idx = page === "home" ? 0 : page === "card" ? 1 : page === "profile" ? 2 : -1;
+  if(idx === -1) return;
+  document.querySelectorAll(".nav-item").forEach((item, i) => item.classList.toggle("active", i === idx));
+  let ind = document.getElementById("navIndicator");
+  if(ind) ind.style.transform = `translateX(${idx * 100}%)`;
+}
+
+/* ============================================================
+   BUTTON LOADER
+============================================================ */
+function setButtonProcessing(btn){
+  if(!btn) return;
+  btn.classList.add("processing");
+  btn.innerHTML = `<span class="btn-processing-content" style="display:flex">
+      <i class="loader-bar"></i><i class="loader-bar"></i><i class="loader-bar"></i><i class="loader-bar"></i>
+    </span>`;
+}
+function resetButton(btn, originalHTML){
+  if(!btn) return;
+  btn.classList.remove("processing");
+  btn.innerHTML = originalHTML;
+}
+async function runButtonAnimation(btn, actionFn, minDuration = 800){
+  if(!btn || btn.classList.contains("processing")) return false;
+  let originalHTML = btn.innerHTML;
+  setButtonProcessing(btn);
+  let start = Date.now();
+  let actionSuccess = false;
+  try { await actionFn(); actionSuccess = true; } catch(e){ console.error(e); }
+  let elapsed = Date.now() - start;
+  if(elapsed < minDuration) await new Promise(r => setTimeout(r, minDuration - elapsed));
+  resetButton(btn, originalHTML);
+  return actionSuccess;
+}
+
+/* ============================================================
+   ORDER VISIBILITY
+============================================================ */
 function isOrderVisible(o){
   if(o.status === "Cancelled" && o.cancelledAt){
-    let elapsed = Date.now() - Number(o.cancelledAt);
-    if(elapsed > CANCEL_HIDE_MS) return false;
+    if(Date.now() - Number(o.cancelledAt) > CANCEL_HIDE_MS) return false;
   }
   return true;
 }
 function getVisibleOrders(){ return orders.filter(isOrderVisible); }
+
+/* ============================================================
+   FLOAT CHAT
+============================================================ */
+let chatDragState = { active:false, startX:0, startY:0, startLeft:0, startTop:0, moved:false };
+
+function initFloatChatDrag(){
+  let el = document.getElementById("floatChat");
+  if(!el) return;
+
+  let saved = localStorage.getItem(STORAGE.chatPos);
+  if(saved){
+    try {
+      let pos = JSON.parse(saved);
+      let maxX = window.innerWidth - 60;
+      let maxY = window.innerHeight - 60;
+      if(pos.left >= 0 && pos.left <= maxX && pos.top >= 0 && pos.top <= maxY){
+        el.style.left = pos.left + "px";
+        el.style.top = pos.top + "px";
+        el.style.right = "auto";
+        el.style.bottom = "auto";
+        el.classList.remove("welcome-mode");
+      }
+    } catch(e){}
+  }
+
+  function startDrag(clientX, clientY){
+    let rect = el.getBoundingClientRect();
+    chatDragState.active = true;
+    chatDragState.moved = false;
+    chatDragState.startX = clientX;
+    chatDragState.startY = clientY;
+    chatDragState.startLeft = rect.left;
+    chatDragState.startTop = rect.top;
+    el.style.transition = "none";
+    el.classList.add("dragging");
+  }
+  function moveDrag(clientX, clientY){
+    if(!chatDragState.active) return;
+    let dx = clientX - chatDragState.startX;
+    let dy = clientY - chatDragState.startY;
+    if(Math.abs(dx) > 5 || Math.abs(dy) > 5) chatDragState.moved = true;
+    let newLeft = chatDragState.startLeft + dx;
+    let newTop = chatDragState.startTop + dy;
+    newLeft = Math.max(0, Math.min(window.innerWidth - el.offsetWidth, newLeft));
+    newTop = Math.max(0, Math.min(window.innerHeight - el.offsetHeight, newTop));
+    el.style.left = newLeft + "px";
+    el.style.top = newTop + "px";
+    el.style.right = "auto";
+    el.style.bottom = "auto";
+    el.classList.remove("welcome-mode");
+  }
+  function endDrag(){
+    if(!chatDragState.active) return;
+    chatDragState.active = false;
+    el.style.transition = "";
+    el.classList.remove("dragging");
+    if(chatDragState.moved){
+      let rect = el.getBoundingClientRect();
+      localStorage.setItem(STORAGE.chatPos, JSON.stringify({ left: rect.left, top: rect.top }));
+    }
+  }
+
+  el.addEventListener("mousedown", e => { if(!e.target.closest(".chat-menu-item")) startDrag(e.clientX, e.clientY); });
+  document.addEventListener("mousemove", e => { if(chatDragState.active){ e.preventDefault(); moveDrag(e.clientX, e.clientY); } });
+  document.addEventListener("mouseup", () => { if(chatDragState.active) endDrag(); });
+  el.addEventListener("touchstart", e => { if(!e.target.closest(".chat-menu-item")){ let t = e.touches[0]; startDrag(t.clientX, t.clientY); } }, { passive:true });
+  document.addEventListener("touchmove", e => { if(chatDragState.active) moveDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive:true });
+  document.addEventListener("touchend", () => { if(chatDragState.active) endDrag(); });
+
+  el.addEventListener("click", e => {
+    if(chatDragState.moved){ e.stopPropagation(); e.preventDefault(); chatDragState.moved = false; }
+  }, true);
+
+  let fab = document.getElementById("chatFab");
+  if(fab){
+    fab.addEventListener("click", e => {
+      if(chatDragState.moved){ chatDragState.moved = false; return; }
+      toggleFloatChat();
+    });
+  }
+}
+function toggleFloatChat(){ document.getElementById("chatMenu").classList.toggle("show"); }
+function updateFloatChatLinks(){
+  let s = support || {};
+  let wa = s.whatsApp || s.whatsapp || "", tg = s.telegram || "";
+  let waEl = document.getElementById("chatWhatsApp");
+  if(wa){
+    let num = wa.replace(/[^0-9]/g, "");
+    if(num.startsWith("0")) num = "880" + num.slice(1);
+    waEl.href = "https://wa.me/" + num; waEl.style.display = "";
+  } else waEl.style.display = "none";
+  let tgEl = document.getElementById("chatTelegram");
+  if(tg){ tgEl.href = tg.startsWith("http") ? tg : "https://t.me/" + tg.replace(/^@/, ""); tgEl.style.display = ""; }
+  else tgEl.style.display = "none";
+}
 
 /* ============================================================
    REALTIME SYNC
@@ -630,10 +902,23 @@ function startRealtimeSync(){
     let val = snap.val() || {};
     products = Object.entries(val).map(([id, x]) => {
       let images = [x.image1, x.image2, x.image3, x.image4, x.image5].filter(Boolean);
-      return { id, ...x, images };
+      let pSizes = (x.sizes || []).map(s =>
+        typeof s === "string" ? { name: s } : { name: s.name }
+      );
+      let pColors = (x.colors || []).map(c =>
+        typeof c === "string" ? { name: c } : { name: c.name }
+      );
+      return { id, ...x, images, sizes: pSizes, colors: pColors };
     });
     if(!document.getElementById("userApp").classList.contains("hidden")){
       renderCategories(); renderProducts();
+    }
+    if(currentProduct){
+      let updated = products.find(p => p.id === currentProduct.id);
+      if(updated){
+        currentProduct = updated;
+        if(currentPageNow() === "details") renderProductDetails();
+      }
     }
   });
   db.ref("sliders").on("value", snap => {
@@ -642,14 +927,7 @@ function startRealtimeSync(){
     renderSliders();
   });
   db.ref("settings").on("value", snap => { settings = snap.val() || {}; });
-  db.ref("support").on("value", snap => {
-    support = snap.val() || {};
-    updateFloatChatLinks();
-  });
-  db.ref("popups").on("value", snap => {
-    let val = snap.val() || {};
-    popups = Object.entries(val).map(([id, x]) => ({ id, ...x })).filter(p => p.active !== false);
-  });
+  db.ref("support").on("value", snap => { support = snap.val() || {}; updateFloatChatLinks(); });
   db.ref("payments").on("value", snap => {
     let val = snap.val() || {};
     payments = Object.entries(val).map(([id, x]) => ({ id, ...x })).filter(p => p.enabled !== false);
@@ -664,29 +942,21 @@ function startUserOrdersSync(uid){
     let val = snap.val() || {};
     orders = Object.entries(val).map(([id, x]) => ({ id, ...x }));
     orders.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-    myTotalSpend = orders
-      .filter(o => o.status !== "Cancelled")
-      .reduce((s, o) => s + Number(o.total || 0), 0);
+    myTotalSpend = orders.filter(o => o.status !== "Cancelled").reduce((s, o) => s + Number(o.total || 0), 0);
     if(!document.getElementById("ordersPage").classList.contains("hidden")) renderOrders();
     if(!document.getElementById("profilePage").classList.contains("hidden")) renderProfile();
     if(!document.getElementById("orderDetailPage").classList.contains("hidden") && currentOrderId) renderOrderDetail(currentOrderId);
   });
-
   if(balanceRef) balanceRef.off();
   balanceRef = db.ref("users/" + uid);
   balanceRef.on("value", snap => {
     let u = snap.val() || {};
     balanceAvailable = Number(u.balance || 0);
     let acc = load(STORAGE.account, {});
-    if(acc.uid === uid){
-      acc.balance = balanceAvailable;
-      save(STORAGE.account, acc);
-    }
+    if(acc.uid === uid){ acc.balance = balanceAvailable; save(STORAGE.account, acc); }
     if(!document.getElementById("profilePage").classList.contains("hidden")) renderProfile();
     if(!document.getElementById("checkoutPage").classList.contains("hidden")) renderCheckout();
   });
-
-  // Auto-refresh to hide expired cancelled orders
   if(window.ordersRefreshTimer) clearInterval(window.ordersRefreshTimer);
   window.ordersRefreshTimer = setInterval(() => {
     if(!document.getElementById("ordersPage").classList.contains("hidden")) renderOrders();
@@ -695,35 +965,6 @@ function startUserOrdersSync(uid){
       if(o && !isOrderVisible(o)){ toast("This order is no longer available"); go('orders'); }
     }
   }, 60000);
-}
-
-/* ============================================================
-   FLOATING LIVE CHAT
-============================================================ */
-function toggleFloatChat(){ document.getElementById("chatMenu").classList.toggle("show"); }
-function updateFloatChatLinks(){
-  let s = support || {};
-  let wa = s.whatsApp || s.whatsapp || "";
-  let tg = s.telegram || "";
-
-  let waEl = document.getElementById("chatWhatsApp");
-  if(wa){
-    let num = wa.replace(/[^0-9]/g, "");
-    if(num.startsWith("0")) num = "880" + num.slice(1);
-    waEl.href = "https://wa.me/" + num;
-    waEl.style.display = "";
-  } else {
-    waEl.style.display = "none";
-  }
-
-  let tgEl = document.getElementById("chatTelegram");
-  if(tg){
-    let link = tg.startsWith("http") ? tg : "https://t.me/" + tg.replace(/^@/, "");
-    tgEl.href = link;
-    tgEl.style.display = "";
-  } else {
-    tgEl.style.display = "none";
-  }
 }
 
 /* ============================================================
@@ -748,9 +989,9 @@ async function registerUser(e){
   if(pass !== confirm){ alert("Passwords do not match"); return; }
   try {
     let s1 = await db.ref("users").orderByChild("email").equalTo(email).once("value");
-    if(s1.exists()){ alert("An account with this email already exists"); return; }
+    if(s1.exists()){ alert("Email already exists"); return; }
     let s2 = await db.ref("users").orderByChild("phone").equalTo(phone).once("value");
-    if(s2.exists()){ alert("An account with this phone already exists"); return; }
+    if(s2.exists()){ alert("Phone already exists"); return; }
     let uid = "u-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
     await db.ref("users/" + uid).set({
       uid, name, email, phone, password: pass,
@@ -772,14 +1013,13 @@ async function loginUser(e){
   try {
     let userData = null;
     let snap = await db.ref("users").orderByChild("email").equalTo(identity).once("value");
-    if(snap.exists()){ let first = Object.values(snap.val())[0]; if(first.password === pass) userData = first; }
+    if(snap.exists()){ let f = Object.values(snap.val())[0]; if(f.password === pass) userData = f; }
     if(!userData){
-      let snap2 = await db.ref("users").orderByChild("phone").equalTo(identity).once("value");
-      if(snap2.exists()){ let first = Object.values(snap2.val())[0]; if(first.password === pass) userData = first; }
+      let s2 = await db.ref("users").orderByChild("phone").equalTo(identity).once("value");
+      if(s2.exists()){ let f = Object.values(s2.val())[0]; if(f.password === pass) userData = f; }
     }
     if(!userData){ alert("Invalid login details"); return; }
-    save(STORAGE.account, userData);
-    save(STORAGE.session, "1");
+    save(STORAGE.account, userData); save(STORAGE.session, "1");
     profile = {
       name: userData.name || "", email: userData.email || "", phone: userData.phone || "",
       addresses: userData.addresses || [], selectedAddressIndex: userData.selectedAddressIndex || 0
@@ -802,15 +1042,14 @@ function logoutUser(){
   if(orderRef){ orderRef.off(); orderRef = null; }
   if(balanceRef){ balanceRef.off(); balanceRef = null; }
   if(window.ordersRefreshTimer){ clearInterval(window.ordersRefreshTimer); window.ordersRefreshTimer = null; }
-  orders = []; myTotalSpend = 0;
-  balanceAvailable = 0; balanceUsed = 0; useBalance = false;
+  orders = []; myTotalSpend = 0; balanceAvailable = 0; balanceUsed = 0; useBalance = false; buyNowItem = null;
   document.getElementById("userApp").classList.add("hidden");
   document.getElementById("welcomeApp").classList.remove("hidden");
   document.getElementById("floatChat").classList.add("welcome-mode");
 }
 
 /* ============================================================
-   NAV
+   NAV / PAGE
 ============================================================ */
 function currentPageNow(){
   let ids = ["homePage","detailsPage","cardPage","profilePage","settingsPage","ordersPage","orderDetailPage","checkoutPage","payConfirmPage","paymentPage","successPage"];
@@ -821,13 +1060,10 @@ function currentPageNow(){
   return "home";
 }
 function go(page){
+  if(!CHECKOUT_FLOW_PAGES.includes(page) && buyNowItem) buyNowItem = null;
   document.querySelectorAll("main>section").forEach(s => s.classList.add("hidden"));
   let t = document.getElementById(page + "Page"); if(t) t.classList.remove("hidden");
-  document.querySelectorAll(".nav-item").forEach(x => x.classList.remove("active"));
-  if(page === "home") document.getElementById("navHome").classList.add("active");
-  if(page === "card") document.getElementById("navCard").classList.add("active");
-  if(page === "profile") document.getElementById("navProfile").classList.add("active");
-  document.getElementById("homeSearch").style.display = page === "home" ? "" : "none";
+  syncNavWithPage(page);
   if(page === "card") renderCard();
   if(page === "profile") renderProfile();
   if(page === "settings") renderSettings();
@@ -856,16 +1092,22 @@ function renderProducts(){
   document.getElementById("productTitle").textContent = searchText ? "Search Results" : (currentCategory === "All" ? "Products" : currentCategory);
   document.getElementById("productCount").textContent = list.length + " items";
   document.getElementById("products").innerHTML = list.length ? list.map(p => `
-    <article class="product" onclick="openProduct('${p.id}')">
-      <div class="product-img"><img src="${escapeHTML(p.images[0] || "")}" alt="${escapeHTML(p.name)}" onerror="this.src='https://via.placeholder.com/600x600?text=Product'"></div>
-      <div class="product-body">
-        <div class="product-name">${escapeHTML(p.name)}</div>
-        <div class="price">${money(p.price)} ${p.oldPrice ? `<span class="old-price">${money(p.oldPrice)}</span>` : ""}</div>
-        <div class="product-meta">${p.rating || 4.5} rating · ${p.stock || 0} in stock</div>
-        <div class="product-actions">
-          <button class="small-btn" onclick="event.stopPropagation();addToCard('${p.id}')">Add to Card</button>
-          <button class="small-btn buy-btn" onclick="event.stopPropagation();buyProduct('${p.id}')">Buy</button>
+    <article class="product">
+      <div class="product-click-area" onclick="openProduct('${p.id}')">
+        <div class="product-img"><img src="${escapeHTML((p.images||[])[0] || "")}" alt="${escapeHTML(p.name)}"></div>
+        <div class="product-body">
+          <div class="product-name">${escapeHTML(p.name)}</div>
+          <div class="price">${money(p.price)} ${p.oldPrice ? `<span class="old-price">${money(p.oldPrice)}</span>` : ""}</div>
+          <div class="product-meta">${p.rating || 4.5} rating · ${p.stock || 0} in stock</div>
         </div>
+      </div>
+      <div class="product-actions">
+        <button class="small-btn" onclick="addToCardAnimated(event,this,'${p.id}')">
+          <span class="btn-normal-content">Add to Card</span>
+        </button>
+        <button class="small-btn buy-btn" onclick="buyNowAnimated(event,this,'${p.id}',1)">
+          <span class="btn-normal-content">Buy Now</span>
+        </button>
       </div>
     </article>`).join("") : `<div class="empty" style="grid-column:1/-1">No products available.</div>`;
 }
@@ -875,96 +1117,226 @@ function renderProducts(){
 ============================================================ */
 function openProduct(id){
   let p = products.find(x => x.id === id); if(!p) return;
-  currentProduct = p; detailQty = 1;
+  currentProduct = p;
+  detailQty = 1;
+  detailSelectedImage = (p.images || [])[0] || "";
+  detailSelectedImageIndex = 0;
   document.querySelectorAll("main>section").forEach(s => s.classList.add("hidden"));
   document.getElementById("detailsPage").classList.remove("hidden");
-  document.getElementById("homeSearch").style.display = "none";
   renderProductDetails();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 function renderProductDetails(){
   let p = currentProduct;
   let imgs = (p.images || []).filter(Boolean);
+
+  if(!detailSelectedImage){
+    detailSelectedImage = imgs[0] || "";
+    detailSelectedImageIndex = 0;
+  }
+
   document.getElementById("detailContent").innerHTML = `
     <div class="detail">
-      <div class="gallery"><img id="mainProductImage" class="main-image" src="${escapeHTML(imgs[0] || "")}">
-        <div class="thumbs">${imgs.map((x, i) => `<button class="thumb ${i === 0 ? "active" : ""}" onclick="selectDetailImage(${i})"><img src="${escapeHTML(x)}"></button>`).join("")}</div>
+      <div class="gallery">
+        <img id="mainProductImage" class="main-image" src="${escapeHTML(detailSelectedImage || imgs[0] || "")}">
+        <div class="thumbs">
+          ${imgs.map((x, i) => `
+            <button class="thumb ${detailSelectedImageIndex === i ? "active" : ""}"
+                    onclick="selectDetailImage(${i})">
+              <img src="${escapeHTML(x)}">
+            </button>`).join("")}
+        </div>
       </div>
       <div class="detail-info">
         <h1>${escapeHTML(p.name)}</h1>
         <div class="rating">${p.rating || 4.5} rating · ${escapeHTML(p.category || "")}</div>
-        <div class="detail-price">${money(p.price)} ${p.oldPrice ? `<span class="detail-old">${money(p.oldPrice)}</span>` : ""}</div>
+        <div class="detail-price">
+          ${money(p.price)}
+          ${p.oldPrice ? `<span class="detail-old">${money(p.oldPrice)}</span>` : ""}
+        </div>
         <div class="stock">${p.stock > 0 ? "In Stock" : "Out of Stock"}</div>
         <div class="description">${escapeHTML(p.description || "No description available.")}</div>
+
         <div class="qty-row"><strong>Quantity</strong>
-          <div class="qty"><button onclick="detailChangeQty(-1)">−</button><span id="detailQty">${detailQty}</span><button onclick="detailChangeQty(1)">+</button></div>
+          <div class="qty">
+            <button onclick="detailChangeQty(-1)">−</button>
+            <span id="detailQty">${detailQty}</span>
+            <button onclick="detailChangeQty(1)">+</button>
+          </div>
         </div>
         <div class="detail-actions">
-          <button class="secondary" onclick="addDetailToCard()">Add to Card</button>
-          <button class="primary" onclick="buyDetailProduct()">Buy Now</button>
+          <button class="secondary" onclick="addDetailToCardAnimated(event,this)">
+            <span class="btn-normal-content">Add to Card</span>
+          </button>
+          <button class="primary" onclick="buyDetailNowAnimated(event,this)">
+            <span class="btn-normal-content">Buy Now</span>
+          </button>
         </div>
       </div>
     </div>`;
 }
+
 function selectDetailImage(i){
-  document.getElementById("mainProductImage").src = currentProduct.images[i];
+  if(!currentProduct) return;
+  let imgs = currentProduct.images || [];
+  if(!imgs[i]) return;
+  detailSelectedImage = imgs[i];
+  detailSelectedImageIndex = i;
+  document.getElementById("mainProductImage").src = imgs[i];
   document.querySelectorAll(".thumb").forEach((x, n) => x.classList.toggle("active", i === n));
 }
+
 function detailChangeQty(c){
   if(!currentProduct.stock) return;
   detailQty = Math.max(1, Math.min(currentProduct.stock, detailQty + c));
   document.getElementById("detailQty").textContent = detailQty;
 }
-function addDetailToCard(){ for(let i = 0; i < detailQty; i++) addToCard(currentProduct.id, true); toast("Product added to Card"); }
-function buyDetailProduct(){
-  if(!currentProduct.stock){ toast("Out of stock"); return; }
-  let x = card.find(x => x.id === currentProduct.id);
-  if(x) x.qty = Math.min(currentProduct.stock, x.qty + detailQty);
-  else card.push({ id: currentProduct.id, qty: detailQty });
-  save(STORAGE.card, card); updateBadge(); openCheckout();
-}
 
 /* ============================================================
    CARD
 ============================================================ */
-function addToCard(id, silent = false){
+function addToCard(id, silent = false, size = "", color = "", image = ""){
   let p = products.find(x => x.id === id);
-  if(!p || p.stock < 1){ toast("Out of stock"); return; }
-  let x = card.find(x => x.id === id);
-  if(x){ if(x.qty >= p.stock){ toast("Stock limit reached"); return; } x.qty++; }
-  else card.push({ id, qty: 1 });
+  if(!p || p.stock < 1){ toast("Out of stock"); return false; }
+
+  if(!image) image = (p.images || [])[0] || "";
+
+  let existing = card.find(x =>
+    x.id === id &&
+    (x.size || "") === (size || "") &&
+    (x.color || "") === (color || "") &&
+    (x.image || "") === (image || "")
+  );
+
+  if(existing){
+    if(existing.qty >= p.stock){ toast("Stock limit reached"); return false; }
+    existing.qty++;
+  } else {
+    card.push({ id, qty: 1, size: size || "", color: color || "", image });
+  }
   save(STORAGE.card, card); updateBadge();
   if(!silent) toast("Added to Card");
+  return true;
 }
-function buyProduct(id){
-  let p = products.find(x => x.id === id);
-  if(!p || !p.stock){ toast("Out of stock"); return; }
-  addToCard(id, true); openCheckout();
+function updateBadge(){
+  let total = card.reduce((s, x) => s + x.qty, 0);
+  let hb = document.getElementById("cardBadge");
+  if(hb) hb.textContent = total;
+  updateNavBadge();
 }
-function updateBadge(){ document.getElementById("cardBadge").textContent = card.reduce((s, x) => s + x.qty, 0); }
 
+/* ============================================================
+   ANIMATED BUTTON HANDLERS
+============================================================ */
+async function addToCardAnimated(e, btn, id){
+  e.stopPropagation(); e.preventDefault();
+  await runButtonAnimation(btn, async () => {
+    let p = products.find(x => x.id === id);
+    if(!p || !p.stock){ toast("Out of stock"); throw new Error("out"); }
+    let firstImg = (p.images || [])[0] || "";
+    if(!addToCard(id, false, "", "", firstImg)) throw new Error("failed");
+  });
+}
+
+async function buyNowAnimated(e, btn, id, qty){
+  e.stopPropagation(); e.preventDefault();
+  let ok = await runButtonAnimation(btn, async () => {
+    let p = products.find(x => x.id === id);
+    if(!p || !p.stock){ toast("Out of stock"); throw new Error("out"); }
+    buyNowItem = {
+      id,
+      qty: Math.min(qty || 1, p.stock),
+      size: "",
+      color: "",
+      image: (p.images || [])[0] || ""
+    };
+  });
+  if(ok) setTimeout(() => openCheckout(), 100);
+}
+
+async function addDetailToCardAnimated(e, btn){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  await runButtonAnimation(btn, async () => {
+    if(!currentProduct.stock){ toast("Out of stock"); throw new Error("out"); }
+
+    let img = detailSelectedImage || (currentProduct.images || [])[0] || "";
+
+    for(let i = 0; i < detailQty; i++){
+      let existing = card.find(x =>
+        x.id === currentProduct.id &&
+        (x.size || "") === "" &&
+        (x.color || "") === "" &&
+        (x.image || "") === img
+      );
+      if(existing){
+        if(existing.qty >= currentProduct.stock) break;
+        existing.qty++;
+      } else {
+        card.push({
+          id: currentProduct.id,
+          qty: 1,
+          size: "",
+          color: "",
+          image: img
+        });
+      }
+    }
+    save(STORAGE.card, card); updateBadge();
+    toast("Product added to Card");
+  });
+}
+
+async function buyDetailNowAnimated(e, btn){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  let ok = await runButtonAnimation(btn, async () => {
+    if(!currentProduct.stock){ toast("Out of stock"); throw new Error("out"); }
+    buyNowItem = {
+      id: currentProduct.id,
+      qty: Math.min(detailQty, currentProduct.stock),
+      size: "",
+      color: "",
+      image: detailSelectedImage || (currentProduct.images || [])[0] || ""
+    };
+  });
+  if(ok) setTimeout(() => openCheckout(), 100);
+}
+
+/* ============================================================
+   CARD RENDER
+============================================================ */
 function renderCard(){
   if(!card.length){
     document.getElementById("cardContent").innerHTML = `<div class="empty"><strong>Your Card is empty</strong><div style="margin-top:7px">Add products from Home.</div></div>`;
     return;
   }
   let subtotal = 0;
-  let html = card.map(x => {
+  let html = card.map((x, idx) => {
     let p = products.find(y => y.id === x.id); if(!p) return "";
     subtotal += p.price * x.qty;
+
+    let variantTags = "";
+    if(x.size || x.color){
+      variantTags = `<div class="card-variant">
+        ${x.size  ? `<span>Size: ${escapeHTML(x.size)}</span>` : ""}
+        ${x.color ? `<span>Color: ${escapeHTML(x.color)}</span>` : ""}
+      </div>`;
+    }
+
     return `
       <div class="card-item">
-        <img src="${escapeHTML(p.images[0] || "")}">
+        <img src="${escapeHTML(x.image || (p.images||[])[0] || "")}">
         <div>
           <div class="card-name">${escapeHTML(p.name)}</div>
+          ${variantTags}
           <div class="card-price">${money(p.price * x.qty)}</div>
           <div class="qty" style="margin-top:7px;width:max-content">
-            <button onclick="changeQty('${p.id}',-1)">−</button>
+            <button onclick="changeQtyAt(${idx},-1)">−</button>
             <span>${x.qty}</span>
-            <button onclick="changeQty('${p.id}',1)">+</button>
+            <button onclick="changeQtyAt(${idx},1)">+</button>
           </div>
         </div>
-        <button class="remove" onclick="removeFromCard('${p.id}')">Remove</button>
+        <button class="remove" onclick="removeFromCardAt(${idx})">Remove</button>
       </div>`;
   }).join("");
   let delivery = getDeliveryCharge(subtotal);
@@ -975,106 +1347,199 @@ function renderCard(){
       <div class="sum-row"><span>Subtotal</span><strong>${money(subtotal)}</strong></div>
       <div class="sum-row"><span>Delivery</span><strong>${delivery ? money(delivery) : "Free"}</strong></div>
       <div class="sum-row total"><span>Total</span><strong>${money(total)}</strong></div>
-      <button class="primary" style="width:100%;margin-top:13px" onclick="openCheckout()">Checkout</button>
+      <button class="primary" style="width:100%;margin-top:13px" onclick="checkoutAnimated(event,this)">
+        <span class="btn-normal-content">Checkout</span>
+      </button>
     </div>`;
+}
+async function checkoutAnimated(e, btn){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  let ok = await runButtonAnimation(btn, async () => {
+    if(!card.length){ toast("Your Card is empty"); throw new Error("empty"); }
+  });
+  if(ok){ buyNowItem = null; setTimeout(() => openCheckout(), 100); }
 }
 function getDeliveryCharge(subtotal){
   let freeAbove = Number(settings.freeDelivery || 1000);
   let charge = Number(settings.deliveryCharge != null ? settings.deliveryCharge : 60);
   return subtotal >= freeAbove ? 0 : charge;
 }
-function changeQty(id, c){
-  let x = card.find(y => y.id === id), p = products.find(y => y.id === id);
-  if(!x || !p) return;
+function changeQtyAt(idx, c){
+  let x = card[idx]; if(!x) return;
+  let p = products.find(y => y.id === x.id); if(!p) return;
   x.qty += c;
   if(x.qty > p.stock) x.qty = p.stock;
-  if(x.qty <= 0) card = card.filter(y => y.id !== id);
+  if(x.qty <= 0) card.splice(idx, 1);
   save(STORAGE.card, card); updateBadge(); renderCard();
 }
-function removeFromCard(id){ card = card.filter(x => x.id !== id); save(STORAGE.card, card); updateBadge(); renderCard(); toast("Removed from Card"); }
+function removeFromCardAt(idx){
+  card.splice(idx, 1);
+  save(STORAGE.card, card); updateBadge(); renderCard();
+  toast("Removed from Card");
+}
 
 /* ============================================================
    CHECKOUT
 ============================================================ */
 function getCartSubtotal(){
-  return card.reduce((s, x) => {
+  return getCheckoutItems().reduce((s, x) => {
     let p = products.find(y => y.id === x.id);
     return s + (p ? p.price * x.qty : 0);
   }, 0);
 }
 
 function openCheckout(){
-  if(!card.length){ toast("Your Card is empty"); return; }
+  let items = getCheckoutItems();
+  if(!items.length){ toast("Your Card is empty"); return; }
   document.querySelectorAll("main>section").forEach(s => s.classList.add("hidden"));
   document.getElementById("checkoutPage").classList.remove("hidden");
-  document.getElementById("homeSearch").style.display = "none";
   selectedAddressIndexCheckout = profile.selectedAddressIndex || 0;
   if(payments.length) selectedPaymentMethod = payments[0].name;
   else selectedPaymentMethod = "Cash on Delivery";
-  useBalance = false;
-  balanceUsed = 0;
+  useBalance = false; balanceUsed = 0;
   renderCheckout();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function renderCheckout(){
+  let items = getCheckoutItems();
   let subtotal = getCartSubtotal();
   let delivery = getDeliveryCharge(subtotal);
   let preBalance = subtotal + delivery;
 
-  if(useBalance && balanceAvailable > 0){
-    balanceUsed = Math.min(balanceAvailable, preBalance);
-  } else {
-    balanceUsed = 0;
-  }
+  if(useBalance && balanceAvailable > 0) balanceUsed = Math.min(balanceAvailable, preBalance);
+  else balanceUsed = 0;
   let total = Math.max(0, preBalance - balanceUsed);
 
   let addrs = getAddressesArr();
   if(!addrs.length){
-    addrs = [{
-      type: "Home", name: profile.name || "", phone: profile.phone || "",
-      street: "", city: "", state: "", zip: "", country: "", fullAddress: "",
-      formatted: "No address saved. Please add address from Profile Settings."
-    }];
+    addrs = [{ type:"Home", name: profile.name || "", phone: profile.phone || "",
+      street:"", city:"", state:"", zip:"", country:"", fullAddress:"",
+      formatted:"No address saved. Please add address from Profile Settings." }];
   }
   if(selectedAddressIndexCheckout >= addrs.length) selectedAddressIndexCheckout = 0;
 
-  let groups = {
-    mobile: payments.filter(p => (p.category || "mobile") === "mobile"),
-    card: payments.filter(p => p.category === "card"),
-    bank: payments.filter(p => p.category === "bank")
-  };
   let payHTML = "";
   if(!payments.length){
     selectedPaymentMethod = "Cash on Delivery";
-    payHTML = `<div class="payment-card selected">
-      <div class="payment-card-radio"></div>
-      <div class="payment-icon">💰</div>
-      <div class="payment-info"><div class="payment-name">Cash on Delivery</div></div>
-    </div>`;
+    payHTML = `<div class="payment-card selected"><div class="payment-card-radio"></div>
+      <div class="payment-icon">${svgIcon("wallet",18)}</div>
+      <div class="payment-info"><div class="payment-name">Cash on Delivery</div></div></div>`;
   } else {
-    if(groups.mobile.length){ payHTML += `<div class="pay-group-label">📱 Mobile Wallet</div>`; payHTML += groups.mobile.map(p => paymentCardHTML(p)).join(""); }
-    if(groups.card.length){ payHTML += `<div class="pay-group-label">💳 Card</div>`; payHTML += groups.card.map(p => paymentCardHTML(p)).join(""); }
-    if(groups.bank.length){ payHTML += `<div class="pay-group-label">🏦 Banking</div>`; payHTML += groups.bank.map(p => paymentCardHTML(p)).join(""); }
+    payHTML = payments.map(p => `
+      <div class="payment-card ${selectedPaymentMethod === p.name ? "selected" : ""}" onclick="selectPaymentMethod('${escapeHTML(p.name)}')">
+        <div class="payment-card-radio"></div>
+        <div class="payment-icon">${svgIcon("phone",18)}</div>
+        <div class="payment-info"><div class="payment-name">${escapeHTML(p.name)}</div></div>
+      </div>`).join("");
   }
 
   let balanceBlock = "";
   if(balanceAvailable > 0){
     balanceBlock = `
       <div class="panel" style="border:1px solid #bbf7d0;background:#f0fdf4">
-        <h3 style="color:#166534"><span class="icon" style="background:#dcfce7">💰</span>Wallet Balance</h3>
+        <h3 style="color:#166534"><span class="icon" style="background:#dcfce7;color:#16a34a">${svgIcon("wallet",16)}</span>Wallet Balance</h3>
         <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:13px;color:#166534;font-weight:600">
-          <input type="checkbox" ${useBalance ? "checked" : ""} onchange="toggleUseBalance(this.checked)" style="width:18px;height:18px;cursor:pointer">
-          Use my balance <strong>${money(balanceAvailable)}</strong> on this order
+          <input type="checkbox" ${useBalance ? "checked" : ""} onchange="toggleUseBalance(this.checked)" style="width:18px;height:18px">
+          Use my balance <strong>${money(balanceAvailable)}</strong>
         </label>
-        ${useBalance ? `<div style="font-size:12px;color:#166534;margin-top:8px">✓ Applying <strong>${money(balanceUsed)}</strong> from wallet</div>` : ""}
+        ${useBalance ? `<div style="font-size:12px;color:#166534;margin-top:8px">✓ Applying <strong>${money(balanceUsed)}</strong></div>` : ""}
       </div>`;
   }
+
+  let variantSections = "";
+
+  items.forEach((x, idx) => {
+    let p = products.find(y => y.id === x.id);
+    if(!p) return;
+
+    let productSizes  = p.sizes  || [];
+    let productColors = p.colors || [];
+    if(!productSizes.length && !productColors.length) return;
+
+    if(productSizes.length && !productSizes.find(s => s.name === x.size)){
+      x.size = productSizes[0].name;
+    }
+    if(productColors.length && !productColors.find(c => c.name === x.color)){
+      x.color = productColors[0].name;
+    }
+
+    variantSections += `
+      <div class="panel" style="border:2px solid #111318;background:#fafbfc;padding:14px 18px">
+        <div style="display:flex;gap:12px;align-items:center">
+          <img src="${escapeHTML(x.image || (p.images||[])[0] || "")}" style="width:54px;height:54px;border-radius:10px;object-fit:cover;background:#f2f3f5;flex:none">
+          <div style="flex:1;min-width:0">
+            <div style="font-size:14px;font-weight:800;color:#111">${escapeHTML(p.name)}</div>
+            <div style="font-size:12px;color:#666;margin-top:4px">
+              <strong style="color:#111;font-size:14px">${money(p.price)}</strong> × ${x.qty}
+              <span style="color:#999"> · </span>
+              <strong style="color:#111">${money(p.price * x.qty)}</strong>
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    if(productSizes.length){
+      variantSections += `
+        <div class="panel" style="border:1px solid #e5e7eb">
+          <h3>
+            <span class="icon">${svgIcon("ruler",16)}</span>
+            Size
+            <span style="color:#e63946;font-size:14px">*</span>
+            ${x.size ? `<span class="option-selected">${svgIcon("check",10,"#16a34a")} ${escapeHTML(x.size)}</span>` : ""}
+          </h3>
+          <div class="payment-list">
+            ${productSizes.map(s => `
+              <div class="payment-card ${x.size === s.name ? "selected" : ""}"
+                   onclick="selectCheckoutVariant(${idx},'size','${escapeHTML(s.name)}')">
+                <div class="payment-card-radio"></div>
+                <div class="payment-icon">${svgIcon("ruler",16)}</div>
+                <div class="payment-info"><div class="payment-name">${escapeHTML(s.name)}</div></div>
+              </div>
+            `).join("")}
+          </div>
+        </div>`;
+    }
+
+    if(productColors.length){
+      variantSections += `
+        <div class="panel" style="border:1px solid #e5e7eb">
+          <h3>
+            <span class="icon">${svgIcon("palette",16)}</span>
+            Color
+            <span style="color:#e63946;font-size:14px">*</span>
+            ${x.color ? `<span class="option-selected">${svgIcon("check",10,"#16a34a")} ${escapeHTML(x.color)}</span>` : ""}
+          </h3>
+          <div class="payment-list">
+            ${productColors.map(c => `
+              <div class="payment-card ${x.color === c.name ? "selected" : ""}"
+                   onclick="selectCheckoutVariant(${idx},'color','${escapeHTML(c.name)}')">
+                <div class="payment-card-radio"></div>
+                <div class="payment-icon">${svgIcon("palette",16)}</div>
+                <div class="payment-info"><div class="payment-name">${escapeHTML(c.name)}</div></div>
+              </div>
+            `).join("")}
+          </div>
+        </div>`;
+    }
+  });
+
+  let summaryHTML = items.map(x => {
+    let p = products.find(y => y.id === x.id);
+    if(!p) return "";
+    let variant = [];
+    if(x.size)  variant.push(x.size);
+    if(x.color) variant.push(x.color);
+    return `<div class="sum-row">
+      <span>${escapeHTML(p.name)}${variant.length ? ` <span style="color:#111;font-weight:700">(${variant.join(" / ")})</span>` : ""} × ${x.qty}</span>
+      <strong>${money(p.price * x.qty)}</strong>
+    </div>`;
+  }).join("");
 
   document.getElementById("checkoutContent").innerHTML = `
     <div class="checkout-grid">
       <div class="panel">
-        <h3><span class="icon">📍</span>Delivery Address</h3>
+        <h3><span class="icon">${svgIcon("location",16)}</span>Delivery Address</h3>
         <div class="address-select-list">
           ${addrs.map((a, i) => `
             <div class="address-card ${i === selectedAddressIndexCheckout ? "selected" : ""}" onclick="selectCheckoutAddress(${i})">
@@ -1084,7 +1549,7 @@ function renderCheckout(){
                 <div class="address-card-name">${escapeHTML(a.name || "")}</div>
               </div>
               <div class="address-card-body">
-                ${a.phone ? `<div>📞 ${escapeHTML(a.phone)}</div>` : ""}
+                ${a.phone ? `<div>${escapeHTML(a.phone)}</div>` : ""}
                 <div>${escapeHTML(a.formatted || `${a.street || ""}, ${a.city || ""}`)}</div>
               </div>
             </div>`).join("")}
@@ -1092,55 +1557,74 @@ function renderCheckout(){
       </div>
 
       <div class="panel">
-        <h3><span class="icon">💳</span>Payment Method</h3>
+        <h3><span class="icon">${svgIcon("card",16)}</span>Payment Method</h3>
         <div class="payment-list">${payHTML}</div>
       </div>
+
+      ${variantSections}
 
       ${balanceBlock}
 
       <div class="panel">
-        <h3><span class="icon">📦</span>Order Summary</h3>
-        ${card.map(x => {
-          let p = products.find(y => y.id === x.id);
-          return p ? `<div class="sum-row"><span>${escapeHTML(p.name)} × ${x.qty}</span><strong>${money(p.price * x.qty)}</strong></div>` : "";
-        }).join("")}
+        <h3><span class="icon">${svgIcon("box",16)}</span>Order Summary</h3>
+        ${summaryHTML}
         <div class="sum-row"><span>Subtotal</span><strong>${money(subtotal)}</strong></div>
         <div class="sum-row"><span>Delivery</span><strong>${delivery ? money(delivery) : "Free"}</strong></div>
         ${balanceUsed > 0 ? `<div class="sum-row"><span style="color:#16a34a">Wallet Discount</span><strong style="color:#16a34a">- ${money(balanceUsed)}</strong></div>` : ""}
         <div class="sum-row total"><span>Total</span><strong>${money(total)}</strong></div>
-        <button class="primary" style="width:100%;margin-top:15px" onclick="proceedToPayConfirm()">Place Order →</button>
+        <button class="primary" style="width:100%;margin-top:15px;display:flex;align-items:center;justify-content:center;gap:8px" onclick="placeOrderAnimated(event,this)">
+          <span class="btn-normal-content">Place Order ${svgIcon("check",16)}</span>
+        </button>
       </div>
     </div>`;
 }
 
-function toggleUseBalance(v){ useBalance = v; renderCheckout(); }
+function selectCheckoutVariant(itemIndex, type, value){
+  let items = getCheckoutItems();
+  let item = items[itemIndex];
+  if(!item) return;
 
-function paymentCardHTML(p){
-  let icon = (p.category === "card") ? "💳" : (p.category === "bank") ? "🏦" : "📱";
-  return `
-    <div class="payment-card ${selectedPaymentMethod === p.name ? "selected" : ""}" onclick="selectPaymentMethod('${escapeHTML(p.name)}')">
-      <div class="payment-card-radio"></div>
-      <div class="payment-icon">${icon}</div>
-      <div class="payment-info"><div class="payment-name">${escapeHTML(p.name)}</div></div>
-    </div>`;
+  if(buyNowItem){
+    if(type === "size") buyNowItem.size = value;
+    else buyNowItem.color = value;
+  } else {
+    if(type === "size") card[itemIndex].size = value;
+    else card[itemIndex].color = value;
+    save(STORAGE.card, card);
+  }
+  renderCheckout();
 }
 
+function toggleUseBalance(v){ useBalance = v; renderCheckout(); }
 function selectCheckoutAddress(i){ selectedAddressIndexCheckout = i; renderCheckout(); }
 function selectPaymentMethod(name){ selectedPaymentMethod = name; renderCheckout(); }
 
 /* ============================================================
-   PAY CONFIRM PAGE
+   PLACE ORDER
 ============================================================ */
-function proceedToPayConfirm(){
-  let addrs = getAddressesArr();
-  if(!addrs.length || !addrs[selectedAddressIndexCheckout]){ toast("Please add delivery address"); return; }
-  let a = addrs[selectedAddressIndexCheckout];
-  if(!a.street || !a.city){ toast("Selected address is incomplete. Update from Profile Settings."); return; }
-  if(!selectedPaymentMethod){ toast("Select payment method"); return; }
+async function placeOrderAnimated(e, btn){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  let ok = await runButtonAnimation(btn, async () => {
+    let addrs = getAddressesArr();
+    if(!addrs.length || !addrs[selectedAddressIndexCheckout]){ toast("Please add delivery address"); throw new Error("no-address"); }
+    let a = addrs[selectedAddressIndexCheckout];
+    if(!a.street || !a.city){ toast("Selected address is incomplete."); throw new Error("bad-address"); }
+    if(!selectedPaymentMethod){ toast("Select payment method"); throw new Error("no-payment"); }
 
+    for(let x of getCheckoutItems()){
+      let p = products.find(y => y.id === x.id); if(!p) continue;
+      let needsSize  = (p.sizes  || []).length > 0;
+      let needsColor = (p.colors || []).length > 0;
+      if(needsSize  && !x.size){  toast(`Select size for ${p.name}`);  throw new Error("no-size"); }
+      if(needsColor && !x.color){ toast(`Select color for ${p.name}`); throw new Error("no-color"); }
+    }
+  });
+  if(ok) setTimeout(() => proceedToPayConfirmNow(), 100);
+}
+
+function proceedToPayConfirmNow(){
   document.querySelectorAll("main>section").forEach(s => s.classList.add("hidden"));
   document.getElementById("payConfirmPage").classList.remove("hidden");
-  document.getElementById("homeSearch").style.display = "none";
   selectedPaymentOption = "full";
   renderPayConfirm();
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1154,46 +1638,60 @@ function renderPayConfirm(){
   let addrs = getAddressesArr();
   let a = addrs[selectedAddressIndexCheckout] || {};
 
+  let items = getCheckoutItems();
+  let variantInfo = items.map(x => {
+    let p = products.find(y => y.id === x.id); if(!p) return "";
+    let parts = [];
+    if(x.size)  parts.push(`Size: ${x.size}`);
+    if(x.color) parts.push(`Color: ${x.color}`);
+    return parts.length ? `${p.name} (${parts.join(" / ")})` : "";
+  }).filter(Boolean).join(", ");
+
   document.getElementById("payConfirmContent").innerHTML = `
     <div class="panel" style="margin-bottom:14px">
-      <h3><span class="icon">✓</span>Confirm Payment</h3>
+      <h3><span class="icon">${svgIcon("check",16,"#16a34a")}</span>Confirm Payment</h3>
       <div style="font-size:13px;color:#666;line-height:1.7">
         <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Payment Method</span><strong style="color:#111">${escapeHTML(selectedPaymentMethod)}</strong></div>
+        ${variantInfo ? `<div style="display:flex;justify-content:space-between;padding:6px 0;gap:20px"><span>Selected Options</span><strong style="color:#111;text-align:right;max-width:65%">${escapeHTML(variantInfo)}</strong></div>` : ""}
         <div style="display:flex;justify-content:space-between;padding:6px 0;gap:20px"><span>Delivery Address</span><strong style="color:#111;text-align:right;max-width:65%">${escapeHTML(a.formatted || "")}</strong></div>
         ${balanceUsed > 0 ? `<div style="display:flex;justify-content:space-between;padding:6px 0"><span>Wallet Discount</span><strong style="color:#16a34a">- ${money(balanceUsed)}</strong></div>` : ""}
       </div>
     </div>
 
     <div class="panel">
-      <h3><span class="icon">💰</span>Choose Payment Amount</h3>
+      <h3><span class="icon">${svgIcon("wallet",16)}</span>Choose Payment Amount</h3>
       <div class="pay-option-grid">
         <div class="pay-option ${selectedPaymentOption === "full" ? "selected" : ""}" onclick="selectPayOption('full')">
-          <div class="pay-option-icon">💰</div>
+          <div class="pay-option-icon">${svgIcon("wallet",22)}</div>
           <div class="pay-option-title">Full Payment</div>
           <div class="pay-option-sub">Pay complete amount now</div>
           <div class="pay-option-price">${money(total)}</div>
         </div>
         <div class="pay-option ${selectedPaymentOption === "delivery_only" ? "selected" : ""}" onclick="selectPayOption('delivery_only')">
-          <div class="pay-option-icon">🚚</div>
+          <div class="pay-option-icon">${svgIcon("truck",22)}</div>
           <div class="pay-option-title">Delivery Charge Only</div>
-          <div class="pay-option-sub">Pay delivery charge now, rest on delivery</div>
+          <div class="pay-option-sub">Pay delivery now, rest on delivery</div>
           <div class="pay-option-price">${money(delivery)}</div>
         </div>
       </div>
-      <div style="font-size:12px;color:#777;margin-top:14px;text-align:center;line-height:1.6">
-        ${selectedPaymentOption === "full"
-          ? "You will pay the full amount via " + escapeHTML(selectedPaymentMethod)
-          : "You will pay only the delivery charge now. Rest amount pay on delivery."}
-      </div>
-      <button class="primary" style="width:100%;margin-top:18px" onclick="proceedToPaymentPage()">Next →</button>
+      <button class="primary" style="width:100%;margin-top:18px" onclick="nextToPaymentAnimated(event,this)">
+        <span class="btn-normal-content">Next →</span>
+      </button>
     </div>`;
 }
 function selectPayOption(opt){ selectedPaymentOption = opt; renderPayConfirm(); }
+
+async function nextToPaymentAnimated(e, btn){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  let ok = await runButtonAnimation(btn, async () => {});
+  if(ok) setTimeout(() => proceedToPaymentPage(), 100);
+}
 
 /* ============================================================
    PAYMENT PAGE
 ============================================================ */
 function proceedToPaymentPage(){
+  let items = getCheckoutItems();
   let subtotal = getCartSubtotal();
   let delivery = getDeliveryCharge(subtotal);
   let preBalance = subtotal + delivery;
@@ -1204,6 +1702,7 @@ function proceedToPaymentPage(){
 
   let addrs = getAddressesArr();
   let a = addrs[selectedAddressIndexCheckout] || {};
+
   pendingOrderData = {
     orderNo: "ZM-" + Date.now().toString().slice(-8),
     userId: (load(STORAGE.account, {}) || {}).uid || "guest",
@@ -1211,13 +1710,25 @@ function proceedToPaymentPage(){
     phone: a.phone || profile.phone,
     email: profile.email,
     address: a.formatted || "",
-    items: card.map(x => {
+    isBuyNow: !!buyNowItem,
+    items: items.map(x => {
       let p = products.find(y => y.id === x.id);
-      return { id: p.id, name: p.name, image: p.images[0] || "", qty: x.qty, price: p.price };
+      return {
+        id: p.id,
+        name: p.name,
+        // 🔥 ইউজার যে ছবি সিলেক্ট করেছে সেটাই পাঠান
+        image: x.image || (p.images||[])[0] || "",
+        image1: p.image1 || "",
+        image2: p.image2 || "",
+        image3: p.image3 || "",
+        qty: x.qty,
+        price: p.price,
+        size: x.size || "",
+        color: x.color || ""
+      };
     }),
     subtotal, delivery,
-    balanceUsed: balanceUsed,
-    total,
+    balanceUsed, total,
     preBalanceTotal: preBalance,
     paymentMethod: selectedPaymentMethod,
     paymentMethodCategory: method ? (method.category || "mobile") : "cod",
@@ -1229,13 +1740,12 @@ function proceedToPaymentPage(){
 
   document.querySelectorAll("main>section").forEach(s => s.classList.add("hidden"));
   document.getElementById("paymentPage").classList.remove("hidden");
-  document.getElementById("homeSearch").style.display = "none";
 
   let isCOD = selectedPaymentMethod === "Cash on Delivery";
   if(isCOD){
     document.getElementById("paymentContent").innerHTML = `
       <div class="panel">
-        <h3><span class="icon">💰</span>Cash on Delivery</h3>
+        <h3><span class="icon">${svgIcon("wallet",16)}</span>Cash on Delivery</h3>
         <div style="text-align:center;padding:20px 0;font-size:14px;color:#666;line-height:1.7">
           You selected Cash on Delivery.<br>Please confirm your order below.
         </div>
@@ -1244,22 +1754,19 @@ function proceedToPaymentPage(){
           ${balanceUsed > 0 ? `<div style="display:flex;justify-content:space-between;padding:6px 0"><span>Wallet Discount</span><strong style="color:#16a34a">- ${money(balanceUsed)}</strong></div>` : ""}
           <div style="display:flex;justify-content:space-between;padding:6px 0"><span>Total</span><strong>${money(pendingOrderData.total)}</strong></div>
         </div>
-        <button class="primary" style="width:100%;margin-top:18px" onclick="submitOrder('COD')">Confirm Order</button>
+        <button class="primary" style="width:100%;margin-top:18px" onclick="submitOrderAnimated(event,this,'COD')">
+          <span class="btn-normal-content">Confirm Order</span>
+        </button>
       </div>`;
     window.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
 
-  let cat = method ? (method.category || "mobile") : "mobile";
-  let typeLabel = cat === "card" ? "Card Payment" : cat === "bank" ? "Bank Transfer" : "Mobile Wallet Payment";
-  let icon = cat === "card" ? "💳" : cat === "bank" ? "🏦" : "📱";
-
   document.getElementById("paymentContent").innerHTML = `
     <div class="pay-info-box">
       <div class="label">Send Money To</div>
       <div class="number">${escapeHTML(account || "—")}</div>
-      <div class="type">${icon} ${escapeHTML(selectedPaymentMethod)}</div>
-      <div style="margin-top:12px;font-size:11px;opacity:.75">${escapeHTML(typeLabel)}</div>
+      <div class="type">${escapeHTML(selectedPaymentMethod)}</div>
     </div>
 
     <div class="pay-info-box" style="margin-top:12px;background:linear-gradient(135deg,#16a34a,#166534)">
@@ -1269,20 +1776,20 @@ function proceedToPaymentPage(){
     </div>
 
     <div class="pay-steps">
-      <div class="pay-step"><div class="pay-step-num">1</div><div class="pay-step-text">Open your <strong>${escapeHTML(selectedPaymentMethod)}</strong> app or dial USSD code.</div></div>
-      <div class="pay-step"><div class="pay-step-num">2</div><div class="pay-step-text">Choose <strong>Send Money</strong> option (not Cash Out).</div></div>
-      <div class="pay-step"><div class="pay-step-num">3</div><div class="pay-step-text">Enter number: <strong>${escapeHTML(account || "—")}</strong> and amount: <strong>${money(pendingOrderData.paymentAmount)}</strong></div></div>
-      <div class="pay-step"><div class="pay-step-num">4</div><div class="pay-step-text">Complete the payment and copy the <strong>Transaction ID</strong>.</div></div>
-      <div class="pay-step"><div class="pay-step-num">5</div><div class="pay-step-text">Paste the Transaction ID below and submit.</div></div>
+      <div class="pay-step"><div class="pay-step-num">1</div><div class="pay-step-text">Open your <strong>${escapeHTML(selectedPaymentMethod)}</strong> app.</div></div>
+      <div class="pay-step"><div class="pay-step-num">2</div><div class="pay-step-text">Choose <strong>Send Money</strong>.</div></div>
+      <div class="pay-step"><div class="pay-step-num">3</div><div class="pay-step-text">Send <strong>${money(pendingOrderData.paymentAmount)}</strong> to <strong>${escapeHTML(account || "—")}</strong></div></div>
+      <div class="pay-step"><div class="pay-step-num">4</div><div class="pay-step-text">Copy the <strong>Transaction ID</strong>.</div></div>
     </div>
 
     <div class="trx-box">
       <label>Transaction ID *</label>
       <input id="trxIdInput" placeholder="e.g. 8XX7N5K9Q1" maxlength="40">
-      <div style="font-size:11px;color:#999;margin-top:8px">Transaction ID must match the payment you sent.</div>
     </div>
 
-    <button class="primary" style="width:100%;margin-top:16px;height:50px;font-size:15px" onclick="submitOrder('paid')">Submit Order ✓</button>
+    <button class="primary" style="width:100%;margin-top:16px;height:50px;font-size:15px" onclick="submitOrderAnimated(event,this,'paid')">
+      <span class="btn-normal-content">Submit Order</span>
+    </button>
   `;
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -1290,14 +1797,24 @@ function proceedToPaymentPage(){
 /* ============================================================
    SUBMIT ORDER
 ============================================================ */
-async function submitOrder(mode){
+async function submitOrderAnimated(e, btn, mode){
+  if(e){ e.stopPropagation(); e.preventDefault(); }
+  let ok = await runButtonAnimation(btn, async () => {
+    if(mode === "paid"){
+      let el = document.getElementById("trxIdInput");
+      let trxId = (el ? el.value : "").trim();
+      if(!trxId){ toast("Please enter Transaction ID"); throw new Error("no-trx"); }
+      if(trxId.length < 4){ toast("Invalid Transaction ID"); throw new Error("bad-trx"); }
+    }
+  });
+  if(ok) setTimeout(() => submitOrderNow(mode), 100);
+}
+
+async function submitOrderNow(mode){
   if(!pendingOrderData){ toast("Something went wrong"); return; }
-  let trxId = "";
   if(mode === "paid"){
     let el = document.getElementById("trxIdInput");
-    trxId = (el ? el.value : "").trim();
-    if(!trxId){ toast("Please enter Transaction ID"); return; }
-    if(trxId.length < 4){ toast("Invalid Transaction ID"); return; }
+    let trxId = (el ? el.value : "").trim();
     pendingOrderData.transactionId = trxId.toUpperCase();
     pendingOrderData.paymentStatus = "pending";
   } else {
@@ -1324,12 +1841,14 @@ async function submitOrder(mode){
     }
 
     await db.ref("orders").push(finalOrder);
-    card = []; save(STORAGE.card, card); updateBadge();
+
+    if(finalOrder.isBuyNow) buyNowItem = null;
+    else { card = []; save(STORAGE.card, card); }
+    updateBadge();
     useBalance = false; balanceUsed = 0;
 
     document.querySelectorAll("main>section").forEach(s => s.classList.add("hidden"));
     document.getElementById("successPage").classList.remove("hidden");
-    document.getElementById("homeSearch").style.display = "none";
 
     let payLine = "";
     if(mode === "paid"){
@@ -1347,7 +1866,7 @@ async function submitOrder(mode){
 
     document.getElementById("successContent").innerHTML = `
       <div class="success">
-        <div class="success-icon">✓</div>
+        <div class="success-icon">${svgIcon("check",32,"#fff")}</div>
         <h2>Order Successful</h2>
         <div class="muted">Your order has been placed successfully.</div>
         <div class="big-id">${escapeHTML(finalOrder.orderNo)}</div>
@@ -1364,7 +1883,7 @@ async function submitOrder(mode){
 }
 
 /* ============================================================
-   PROFILE (with Balance)
+   PROFILE
 ============================================================ */
 function renderProfile(){
   let initial = (profile.name || "U").charAt(0).toUpperCase();
@@ -1384,16 +1903,14 @@ function renderProfile(){
         <div class="info"><span>Name</span><span>${escapeHTML(profile.name)}</span></div>
         <div class="info"><span>Email</span><span>${escapeHTML(profile.email)}</span></div>
         <div class="info"><span>Phone</span><span>${escapeHTML(profile.phone)}</span></div>
-        <div class="info">
-          <span>Wallet Balance</span>
-          <span style="color:${balanceAvailable > 0 ? '#16a34a' : '#666'};font-weight:800">${money(balanceAvailable)}</span>
-        </div>
+        <div class="info"><span>Wallet Balance</span>
+          <span style="color:${balanceAvailable > 0 ? '#16a34a' : '#666'};font-weight:800">${money(balanceAvailable)}</span></div>
         <div class="info"><span>Total Spend</span><span style="color:#111;font-weight:800">${money(myTotalSpend)}</span></div>
         <div class="info"><span>Total Orders</span><span>${orders.filter(o => o.status !== "Cancelled" || isOrderVisible(o)).length}</span></div>
         <div class="info"><span>Address</span><span>${escapeHTML(addr)}</span></div>
       </div>
       ${balanceAvailable > 0 ? `<div class="balance-box">
-        💰 You have <strong>${money(balanceAvailable)}</strong> in your wallet. It will be available as a discount on your next order.
+        💰 You have <strong>${money(balanceAvailable)}</strong> in your wallet.
       </div>` : ""}
     </div>
     <div class="profile-menu">
@@ -1439,7 +1956,6 @@ function renderSettings(){
               <div style="color:#666;margin-top:3px">
                 ${escapeHTML(x.street || "")}, ${escapeHTML(x.city || "")}, ${escapeHTML(x.state || "")} - ${escapeHTML(x.zip || "")}<br>${escapeHTML(x.country || "")}
               </div>
-              ${x.fullAddress ? `<div style="color:#666;margin-top:4px;font-style:italic">Full: ${escapeHTML(x.fullAddress)}</div>` : ""}
             </div>
             ${a.length > 1 ? `<button class="address-remove" onclick="event.stopPropagation();removeAddress(${i})">×</button>` : ""}
           </div>`;
@@ -1471,7 +1987,7 @@ async function updatePhone(){
   if(!v){ toast("Enter phone number"); return; }
   profile.phone = v; save(STORAGE.profile, profile);
   let account = load(STORAGE.account, {});
-  if(account.uid){ await db.ref("users/" + account.uid).update({ phone: v }); }
+  if(account.uid) await db.ref("users/" + account.uid).update({ phone: v });
   toast("Phone updated");
 }
 async function updateEmail(){
@@ -1479,7 +1995,7 @@ async function updateEmail(){
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ toast("Enter valid email"); return; }
   profile.email = v; save(STORAGE.profile, profile);
   let account = load(STORAGE.account, {});
-  if(account.uid){ await db.ref("users/" + account.uid).update({ email: v }); }
+  if(account.uid) await db.ref("users/" + account.uid).update({ email: v });
   toast("Email updated");
 }
 function toggleAddressForm(){ let f = document.getElementById("addressForm"); if(f) f.classList.toggle("show"); }
@@ -1503,14 +2019,10 @@ async function addAddress(){
   profile.selectedAddressIndex = profile.addresses.length - 1;
   save(STORAGE.profile, profile);
   let account = load(STORAGE.account, {});
-  if(account.uid){
-    await db.ref("users/" + account.uid).update({
-      addresses: profile.addresses,
-      selectedAddressIndex: profile.selectedAddressIndex
-    });
-  }
-  renderSettings();
-  toast("Address added");
+  if(account.uid) await db.ref("users/" + account.uid).update({
+    addresses: profile.addresses, selectedAddressIndex: profile.selectedAddressIndex
+  });
+  renderSettings(); toast("Address added");
 }
 async function removeAddress(i){
   if(profile.addresses.length <= 1){ toast("At least one address required"); return; }
@@ -1518,26 +2030,21 @@ async function removeAddress(i){
   if(profile.selectedAddressIndex >= profile.addresses.length) profile.selectedAddressIndex = profile.addresses.length - 1;
   save(STORAGE.profile, profile);
   let account = load(STORAGE.account, {});
-  if(account.uid){
-    await db.ref("users/" + account.uid).update({
-      addresses: profile.addresses,
-      selectedAddressIndex: profile.selectedAddressIndex
-    });
-  }
-  renderSettings();
-  toast("Address removed");
+  if(account.uid) await db.ref("users/" + account.uid).update({
+    addresses: profile.addresses, selectedAddressIndex: profile.selectedAddressIndex
+  });
+  renderSettings(); toast("Address removed");
 }
 async function selectAddress(i){
   profile.selectedAddressIndex = i;
   save(STORAGE.profile, profile);
   let account = load(STORAGE.account, {});
-  if(account.uid){ await db.ref("users/" + account.uid).update({ selectedAddressIndex: i }); }
-  renderSettings();
-  toast("Address selected");
+  if(account.uid) await db.ref("users/" + account.uid).update({ selectedAddressIndex: i });
+  renderSettings(); toast("Address selected");
 }
 
 /* ============================================================
-   SUPPORT MODAL
+   SUPPORT
 ============================================================ */
 function openSupport(){
   let s = support || {};
@@ -1545,12 +2052,11 @@ function openSupport(){
   document.getElementById("modalBody").innerHTML = `
     <div style="padding:10px 0;line-height:2;font-size:13px">
       <strong>Phone:</strong> ${escapeHTML(s.phone || "+880 1XXXXXXXXX")}<br>
-      <strong>Email:</strong> ${escapeHTML(s.email || "support@zahidmart.com")}<br>
+      <strong>Email:</strong> ${escapeHTML(s.email || "support@jahidshop.com")}<br>
       <strong>WhatsApp:</strong> ${escapeHTML(s.whatsApp || s.whatsapp || "—")}<br>
       <strong>Telegram:</strong> ${escapeHTML(s.telegram || "—")}<br>
       <strong>Hours:</strong> ${escapeHTML(s.hours || "Sat–Thu, 10AM – 8PM")}<br>
       <strong>Address:</strong> ${escapeHTML(s.address || "Dhaka, Bangladesh")}
-      ${s.message ? `<div style="margin-top:10px;color:#555">${escapeHTML(s.message)}</div>` : ""}
       <button class="primary" style="width:100%;margin-top:15px" onclick="closeModal()">Close</button>
     </div>`;
   document.getElementById("modal").classList.add("show");
@@ -1560,8 +2066,6 @@ function closeModal(){ document.getElementById("modal").classList.remove("show")
 /* ============================================================
    ORDERS
 ============================================================ */
-const statusSteps = ["Order Placed", "Confirmed", "Processing", "Shipping", "Out for Delivery", "Delivered"];
-
 function statusClass(s){
   if(s === "Order Placed") return "placed";
   if(s === "Confirmed") return "confirmed";
@@ -1598,20 +2102,44 @@ function renderOrders(){
       refundLine = `<div style="margin-top:10px;padding:10px;background:#f0fdf4;border-radius:8px;font-size:11px;color:#166534">✓ Refunded ${money(o.refundAmount || 0)} to wallet</div>`;
     }
 
+    let countdownBadge = "";
+    if(o.status === "Cancelled" && o.cancelledAt){
+      let remaining = getRemainingTime(o.cancelledAt);
+      if(remaining > 0){
+        countdownBadge = `<span class="cancel-countdown" data-cancel-countdown="${o.cancelledAt}">⏱ ${formatCountdown(remaining)}</span>`;
+      }
+    }
+
     return `
       <div class="order-card">
         <div class="order-head">
-          <div><div class="order-id">${escapeHTML(o.orderNo || o.id)}</div><div class="order-meta">Ordered ${formatDate(o.createdAt || o.date)}</div></div>
+          <div>
+            <div class="order-id">
+              ${escapeHTML(o.orderNo || o.id)}
+              ${countdownBadge}
+            </div>
+            <div class="order-meta">Ordered ${formatDate(o.createdAt || o.date)}</div>
+          </div>
           <div class="status ${statusClass(o.status)}">${escapeHTML(o.status)}</div>
         </div>
-        ${(o.items || []).slice(0, 2).map(x => `
+        ${(o.items || []).slice(0, 2).map(x => {
+          let variantTags = "";
+          if(x.size || x.color){
+            variantTags = `<div class="order-variant">
+              ${x.size ? `<span>Size: ${escapeHTML(x.size)}</span>` : ""}
+              ${x.color ? `<span>Color: ${escapeHTML(x.color)}</span>` : ""}
+            </div>`;
+          }
+          return `
           <div class="order-product">
             <img src="${escapeHTML(x.image || "")}">
             <div>
               <div class="order-product-name">${escapeHTML(x.name)}</div>
               <div class="order-product-meta">Quantity: ${x.qty} · Price: <strong>${money(x.price)}</strong></div>
+              ${variantTags}
             </div>
-          </div>`).join("")}
+          </div>`;
+        }).join("")}
         ${(o.items || []).length > 2 ? `<div class="order-meta" style="margin-top:8px">+ ${(o.items || []).length - 2} more item(s)</div>` : ""}
         ${payLine}
         <div class="order-meta">Total: <strong>${money(o.total)}</strong></div>
@@ -1622,40 +2150,34 @@ function renderOrders(){
         </div>
       </div>`;
   }).join("");
+
+  startCancelCountdowns();
 }
 
 /* ============================================================
-   ORDER DETAILS PAGE
+   ORDER DETAILS
 ============================================================ */
 function openOrderDetail(id){
   let o = orders.find(x => x.id === id);
-  if(!o || !isOrderVisible(o)){
-    toast("This order is no longer available");
-    return;
-  }
+  if(!o || !isOrderVisible(o)){ toast("This order is no longer available"); return; }
   currentOrderId = id;
   document.querySelectorAll("main>section").forEach(s => s.classList.add("hidden"));
   document.getElementById("orderDetailPage").classList.remove("hidden");
-  document.getElementById("homeSearch").style.display = "none";
   renderOrderDetail(id);
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function renderOrderDetail(id){
   let o = orders.find(x => x.id === id);
-  if(!o){
-    document.getElementById("orderDetailContent").innerHTML = `<div class="empty">Order not found</div>`;
-    return;
-  }
+  if(!o){ document.getElementById("orderDetailContent").innerHTML = `<div class="empty">Order not found</div>`; return; }
 
   let total = Number(o.total || 0);
   let walletUsed = Number(o.walletUsed || o.balanceUsed || 0);
   let paid = walletUsed;
-
   if(o.paymentOption === "delivery_only"){
-    if(o.paymentStatus === "verified"){ paid += Number(o.paymentAmount || 0); }
+    if(o.paymentStatus === "verified") paid += Number(o.paymentAmount || 0);
   } else if(o.paymentMethod === "Cash on Delivery"){
-    if(o.status === "Delivered"){ paid = total; }
+    if(o.status === "Delivered") paid = total;
   } else if(o.paymentStatus === "verified"){
     paid += Number(o.paymentAmount || 0);
   }
@@ -1667,38 +2189,40 @@ function renderOrderDetail(id){
   if(o.status === "Order Placed" || o.status === "Confirmed" || o.status === "Processing") statusPill = `<span class="od-pill amber">${escapeHTML(o.status)}</span>`;
 
   let payBadge = "";
-  if(o.paymentMethod === "Cash on Delivery"){
-    payBadge = `<span class="od-pill gray">COD</span>`;
-  } else if(o.paymentStatus === "verified"){
-    payBadge = `<span class="od-pill green">✓ Verified</span>`;
-  } else if(o.paymentStatus === "rejected"){
-    payBadge = `<span class="od-pill red">✗ Rejected</span>`;
-  } else {
-    payBadge = `<span class="od-pill amber">⏳ Pending</span>`;
-  }
+  if(o.paymentMethod === "Cash on Delivery") payBadge = `<span class="od-pill gray">COD</span>`;
+  else if(o.paymentStatus === "verified") payBadge = `<span class="od-pill green">✓ Verified</span>`;
+  else if(o.paymentStatus === "rejected") payBadge = `<span class="od-pill red">✗ Rejected</span>`;
+  else payBadge = `<span class="od-pill amber">⏳ Pending</span>`;
 
   let refundBlock = "";
   if(o.status === "Cancelled" && o.refundStatus === "pending"){
     refundBlock = `<div style="margin-top:12px;padding:12px;background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;font-size:12px;color:#92400e;line-height:1.6">
-      ⏳ Refund of <strong>${money(o.refundAmount || 0)}</strong> is pending admin approval. It will be added to your wallet once approved.
-    </div>`;
+      ⏳ Refund of <strong>${money(o.refundAmount || 0)}</strong> is pending admin approval.</div>`;
   } else if(o.refundStatus === "refunded"){
     refundBlock = `<div style="margin-top:12px;padding:12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;font-size:12px;color:#166534;line-height:1.6">
-      ✓ Refund of <strong>${money(o.refundAmount || 0)}</strong> has been added to your wallet balance.
-    </div>`;
+      ✓ Refund of <strong>${money(o.refundAmount || 0)}</strong> has been added to your wallet.</div>`;
+  }
+
+  let countdownLine = "";
+  if(o.status === "Cancelled" && o.cancelledAt){
+    let remaining = getRemainingTime(o.cancelledAt);
+    if(remaining > 0){
+      countdownLine = `<div class="od-row"><span>Auto-hide in</span><strong><span class="cancel-countdown" data-cancel-countdown="${o.cancelledAt}">⏱ ${formatCountdown(remaining)}</span></strong></div>`;
+    }
   }
 
   document.getElementById("orderDetailContent").innerHTML = `
     <div class="od-panel">
-      <h3><span class="icon">📦</span>Order Info</h3>
+      <h3><span class="icon">${svgIcon("box",16)}</span>Order Info</h3>
       <div class="od-row"><span>Order No</span><strong>${escapeHTML(o.orderNo || o.id)}</strong></div>
       <div class="od-row"><span>Ordered On</span><strong>${formatDateTime(o.createdAt || o.date)}</strong></div>
       <div class="od-row"><span>Status</span><span>${statusPill}</span></div>
+      ${countdownLine}
       <div class="od-row"><span>Expected Delivery</span><strong>${formatDate(o.deliveryDate)}</strong></div>
     </div>
 
     <div class="od-panel">
-      <h3><span class="icon">📍</span>Delivery Address</h3>
+      <h3><span class="icon">${svgIcon("location",16)}</span>Delivery Address</h3>
       <div style="font-size:13px;color:#333;line-height:1.6">
         <strong>${escapeHTML(o.customerName || "")}</strong><br>
         ${escapeHTML(o.phone || "")}<br>
@@ -1707,7 +2231,7 @@ function renderOrderDetail(id){
     </div>
 
     <div class="od-panel">
-      <h3><span class="icon">💳</span>Payment Info</h3>
+      <h3><span class="icon">${svgIcon("card",16)}</span>Payment Info</h3>
       <div class="od-row"><span>Method</span><strong>${escapeHTML(o.paymentMethod || "—")}</strong></div>
       <div class="od-row"><span>Option</span><strong>${o.paymentOption === "full" ? "Full Payment" : "Delivery Charge Only"}</strong></div>
       ${o.transactionId ? `<div class="od-row"><span>Transaction ID</span><strong>${escapeHTML(o.transactionId)}</strong></div>` : ""}
@@ -1721,27 +2245,39 @@ function renderOrderDetail(id){
     </div>
 
     <div class="od-panel">
-      <h3><span class="icon">🛍️</span>Items (${(o.items || []).length})</h3>
-      ${(o.items || []).map(x => `
+      <h3><span class="icon">${svgIcon("bag",16)}</span>Items (${(o.items || []).length})</h3>
+      ${(o.items || []).map(x => {
+        let variantTags = "";
+        if(x.size || x.color){
+          variantTags = `<div class="od-item-variant">
+            ${x.size ? `<span>Size: ${escapeHTML(x.size)}</span>` : ""}
+            ${x.color ? `<span>Color: ${escapeHTML(x.color)}</span>` : ""}
+          </div>`;
+        }
+        return `
         <div class="od-item">
           <img src="${escapeHTML(x.image || "")}">
           <div>
             <div class="od-item-name">${escapeHTML(x.name)}</div>
             <div class="od-item-meta">Quantity: ${x.qty} · Unit: ${money(x.price)}</div>
+            ${variantTags}
           </div>
           <div class="od-item-price">${money(Number(x.price || 0) * Number(x.qty || 1))}</div>
-        </div>`).join("")}
+        </div>`;
+      }).join("")}
     </div>
 
     ${refundBlock}
 
-    ${o.notification ? `<div class="od-panel"><h3><span class="icon">🔔</span>Notification</h3><div style="font-size:13px;color:#555;line-height:1.6">${escapeHTML(o.notification)}</div></div>` : ""}
+    ${o.notification ? `<div class="od-panel"><h3><span class="icon">${svgIcon("check",16,"#f59e0b")}</span>Notification</h3><div style="font-size:13px;color:#555;line-height:1.6">${escapeHTML(o.notification)}</div></div>` : ""}
 
     ${canCancel(o) ? `
       <div style="display:flex;gap:10px;margin-bottom:14px">
         <button class="primary" style="flex:1;background:#fff;color:#b42318;border:1px solid #fca5a5" onclick="cancelOrder('${o.id}')">Cancel Order</button>
       </div>` : ""}
   `;
+
+  startCancelCountdowns();
 }
 
 /* ============================================================
@@ -1755,7 +2291,6 @@ async function cancelOrder(id){
 
   let refundAmount = 0;
   let walletUsed = Number(o.walletUsed || o.balanceUsed || 0);
-
   if(walletUsed > 0) refundAmount += walletUsed;
   if(o.paymentStatus === "verified" && o.paymentMethod !== "Cash on Delivery"){
     refundAmount += Number(o.paymentAmount || 0);
@@ -1764,6 +2299,8 @@ async function cancelOrder(id){
   let update = {
     status: "Cancelled",
     cancelledAt: Date.now(),
+    cancelledBy: "user",
+    cancelledByName: profile.name || "Customer",
     updatedAt: Date.now()
   };
 
@@ -1799,7 +2336,7 @@ function renderSliders(){
   document.getElementById("slides").innerHTML = active.map((x, i) => `
     <div class="slide ${i === sliderIndex ? "active" : ""}">
       <a class="slide-link" href="${escapeHTML(x.link || "#")}">
-        <img src="${escapeHTML(x.image || "")}" onerror="this.src='https://via.placeholder.com/1600x500?text=Slider'">
+        <img src="${escapeHTML(x.image || "")}">
       </a>
     </div>`).join("");
   document.getElementById("sliderDots").innerHTML = active.map((x, i) => `<button class="dot ${i === sliderIndex ? "active" : ""}" onclick="setSlide(${i})"></button>`).join("");
@@ -1822,6 +2359,7 @@ function init(){
   startRealtimeSync();
   updateBadge();
   updateFloatChatLinks();
+  initFloatChatDrag();
   if(localStorage.getItem(STORAGE.session)){
     let account = load(STORAGE.account, null);
     if(account){
